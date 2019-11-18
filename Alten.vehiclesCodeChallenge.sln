@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorVehicles.VehicleService.API", "MonitorVehicles.VehicleService.API\MonitorVehicles.VehicleService.API.csproj", "{16D567A3-ECBA-4220-AFFD-A6F366172BCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16D567A3-ECBA-4220-AFFD-A6F366172BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D567A3-ECBA-4220-AFFD-A6F366172BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D567A3-ECBA-4220-AFFD-A6F366172BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D567A3-ECBA-4220-AFFD-A6F366172BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D26F2F6-1A15-4066-BC25-EE5D1120696E}
+	EndGlobalSection
+EndGlobal
