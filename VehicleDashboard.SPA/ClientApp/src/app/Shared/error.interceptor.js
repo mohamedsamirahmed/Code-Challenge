@@ -1,12 +1,41 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var ErrorInterceptor = /** @class */ (function () {
-    function ErrorInterceptor() {
-    }
-    ErrorInterceptor.prototype.intercept = function (req, next) {
-        throw new Error("Method Not Implemented");
-    };
-    return ErrorInterceptor;
-}());
-exports.ErrorInterceptor = ErrorInterceptor;
+//import { HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from "@angular/common/http";
+//import { catchError } from "rxjs/operators";
+//import { Injectable } from "@angular/core";
+//@Injectable()
+//export class ErrorInterceptor implements HttpInterceptor {
+//  intercept(
+//    req: import('@angular/common/http').HttpRequest<any>,
+//    next: import('@angular/common/http').HttpHandler
+//  ): import("rxjs").Observable<import('@angular/common/http').HttpEvent<any>> {
+//    throw new Error("Method not implemented");
+//    return next.handle(req).pipe(
+//      catchError(error => {
+//        if (error.status === 401) {
+//          return throwError(error.statusText);
+//        }
+//        if (error instanceof HttpErrorResponse) {
+//          const applicationError = error.headers.get('Application-Error');
+//          if (applicationError) {
+//            return throwError(applicationError);
+//          }
+//          const serverError = error.error;
+//          let modalStateError = '';
+//          if (serverError.errors && typeof serverError.errors === 'object') {
+//            for (const key in serverError.errors) {
+//              if (serverError.errors[key]) {
+//                modalStateError += serverError.errors[key] + '\n'
+//              }
+//            }
+//          }
+//          return throwError(modalStateError || serverError || 'Server Error')
+//        }
+//      })
+//    );
+//  }
+//}
+//export const ErrorInterceptorProvider = {
+//  provider: HTTP_INTERCEPTORS,
+//  useClass: ErrorInterceptor,
+//  multi: true
+//}
 //# sourceMappingURL=error.interceptor.js.map

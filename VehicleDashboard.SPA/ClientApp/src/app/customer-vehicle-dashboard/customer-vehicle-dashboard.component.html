@@ -1,0 +1,29 @@
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!_cutomerVehicles"><em>Loading...</em></p>
+
+<table class='table' *ngIf="_cutomerVehicles">
+  <thead>
+    <tr>
+      <th>customer</th>
+      <th>VIN</th>
+      <th>Reg #</th>
+      <th>Status</th>
+      <th>Last Modified Date</th>
+      </tr>
+</thead>
+  <tbody>
+    <tr *ngFor="let customeVehicle of _cutomerVehicles">
+      <td><span>{{ customeVehicle.customer.name }}<br/>
+      {{ customeVehicle.customer.address }}&nbsp;
+      {{ customeVehicle.customer.postalCode }} &nbsp;
+      {{ customeVehicle.customer.city }}</span></td>
+      <td>{{ customeVehicle.vin }}</td>
+      <td>{{ customeVehicle.regNo }}</td>
+      <td>{{ customeVehicle.currentStatus }}</td>
+      <td>{{ customeVehicle.lastModificationStatus }}</td>
+    </tr>
+  </tbody>
+</table>

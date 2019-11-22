@@ -11,6 +11,6 @@ namespace VehicleDashboard.VehicleService.Domain.Services
 {
    public interface IVehicleDashboardService : IUnitOfWork
     {
-        IEnumerable<CustomersDTO> GetCustomers();
+        ResponseModel<IEnumerable<CustomerVehiclesDTO>> GetCustomerVehicleList();
     }
 }

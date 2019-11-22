@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using VehicleDashboard.SPA.Helpers;
 using VehicleDashboard.VehicleService.Data;
@@ -26,24 +27,28 @@ namespace VehiclesDashboard.VehicleServices.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add service and create Policy with options
+            services.AddCors();
             services.AddDbContext<VehicleServiceDataContext>(db => db.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("VehiclesDashboard.VehicleServices.API")));
             services.AddTransient<IVehicleDashboardService, VehicleDashboardService>();
-            services.AddCors();
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling= 
+                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else {
-                app.UseExceptionHandler(builder => {
+            else
+            {
+                app.UseExceptionHandler(builder =>
+                {
                     builder.Run(async context =>
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -57,7 +62,6 @@ namespace VehiclesDashboard.VehicleServices.API
                     });
                 });
             }
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
     }

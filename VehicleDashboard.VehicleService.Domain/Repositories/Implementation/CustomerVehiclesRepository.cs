@@ -5,13 +5,12 @@ using VehicleDashboard.VehicleService.Domain.Model;
 
 namespace VehicleDashboard.VehicleService.Domain.Repositories.Implementation
 {
-    public class CustomerRepository : EntityFrameworkRepository<Customer>,ICustomerRepository
+    public class CustomerVehiclesRepository : EntityFrameworkRepository<CustomerVehicle>,ICustomerVehiclesRepository
     {
         private readonly VehicleServiceDataContext _dbContext;
-        public CustomerRepository(VehicleServiceDataContext dbContext):base(dbContext)
+        public CustomerVehiclesRepository(VehicleServiceDataContext dbContext):base(dbContext)
         {
             _dbContext = dbContext;
         }
-
     }
 }
