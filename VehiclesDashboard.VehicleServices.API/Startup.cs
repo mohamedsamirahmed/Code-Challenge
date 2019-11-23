@@ -39,7 +39,7 @@ namespace VehiclesDashboard.VehicleServices.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            
 
             if (env.IsDevelopment())
             {
@@ -62,6 +62,15 @@ namespace VehiclesDashboard.VehicleServices.API
                     });
                 });
             }
+            //allow cors origin
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            //adding signalR hub context
+            //app.UseSignalR(routes =>
+            //{
+            //    routes.MapHub<VehicleMonitoringHub>("");
+            //});
+
             app.UseMvc();
         }
     }
