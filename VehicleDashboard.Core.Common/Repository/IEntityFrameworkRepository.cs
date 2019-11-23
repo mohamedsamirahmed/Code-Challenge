@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VehicleDashboard.VehicleService.Domain.Repositories
+namespace VehicleDashboard.Core.Common.Repository
 {
     public interface IEntityFrameworkRepository<TEntity> : IDisposable
-           where TEntity : class
+             where TEntity : class
     {
         TEntity Add(TEntity Entity);
 

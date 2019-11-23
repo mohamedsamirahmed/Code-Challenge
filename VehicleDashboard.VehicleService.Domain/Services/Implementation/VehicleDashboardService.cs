@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VehicleDashboard.Shared.Common.Models;
 using VehicleDashboard.VehicleService.Data;
 using VehicleDashboard.VehicleService.Domain.Model;
 using VehicleDashboard.VehicleService.Domain.Repositories;
 using VehicleDashboard.VehicleService.Domain.Repositories.Implementation;
-using VehicleDashboard.VehicleService.Domain.UnitOfWork;
 using VehicleDashboard.VehicleService.DTO;
 using Microsoft.EntityFrameworkCore;
-
+using VehicleDashboard.Core.Common.Models;
 
 namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 {
@@ -31,7 +27,7 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 
 
         private readonly VehicleServiceDataContext _dbContext;
-        public ICustomerVehiclesRepository _customerVehiclesRepo;
+        private ICustomerVehiclesRepository _customerVehiclesRepo;
 
         public VehicleDashboardService(VehicleServiceDataContext dbContext)
         {

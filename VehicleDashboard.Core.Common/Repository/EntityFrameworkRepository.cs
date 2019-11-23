@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace VehicleDashboard.VehicleService.Domain.Repositories
+namespace VehicleDashboard.Core.Common.Repository
 {
     public class EntityFrameworkRepository<TEntity> : IEntityFrameworkRepository<TEntity>
-           where TEntity : class, new()
+         where TEntity : class, new()
     {
         #region Members
 

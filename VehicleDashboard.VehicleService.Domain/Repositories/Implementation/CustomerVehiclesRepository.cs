@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VehicleDashboard.Core.Common.Repository;
 using VehicleDashboard.VehicleService.Data;
 using VehicleDashboard.VehicleService.Domain.Model;
 
