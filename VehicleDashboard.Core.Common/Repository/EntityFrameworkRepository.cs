@@ -78,12 +78,12 @@ namespace VehicleDashboard.Core.Common.Repository
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
         public Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public TEntity GetById(object KeyValue)

@@ -15,8 +15,6 @@ namespace VehiclesDashboard.VehicleServices.API
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
-            var _logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
