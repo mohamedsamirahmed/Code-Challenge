@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleDashboard.EventBusRabbitMQ\VehicleDashboard.EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.EventBus\VehicleDashboard.EventBus.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain\VehicleDashboard.VehicleConnection.Domain.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj" />
+    <ProjectReference Include="..\VehiclesDashboard.VehicleServices.API\VehiclesDashboard.VehicleServices.API.csproj" />
+  </ItemGroup>
+
+</Project>

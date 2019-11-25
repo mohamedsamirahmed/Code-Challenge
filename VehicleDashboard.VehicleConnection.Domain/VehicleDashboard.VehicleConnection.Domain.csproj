@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Data\VehicleDashboard.VehicleConnection.Data.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain.Model\VehicleDashboard.VehicleConnection.Domain.Model.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleService.Domain.Model\VehicleDashboard.VehicleService.Domain.Model.csproj" />
+  </ItemGroup>
+
+</Project>
