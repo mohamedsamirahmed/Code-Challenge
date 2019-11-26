@@ -10,7 +10,6 @@ namespace VehiclesDashboard.VehicleConnection.API.IntegrationEvents
 {
     public class CustomerVehicleHistoryIntegrationEventService : ICustomerVehicleHistoryIntegrationEventService
     {
-      //  private readonly Func<DbConnection, IIntegrationEventLogService> _integrationEventLogServiceFactory;
         private readonly IEventBus _eventBus;
       //  private readonly CatalogContext _catalogContext;
         //private readonly IIntegrationEventLogService _eventLogService;

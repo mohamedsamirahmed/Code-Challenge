@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace VehicleDashboard.Simulator.HostScheduler.Jobs
 {
-    public class CustomeVehiclesHostedService : IHostedService
+    public class CustomerVehiclesHostedService : IHostedService
     {
 
         private readonly ISchedulerFactory _schedulerFactory;
         private readonly IJobFactory _jobFactory;
         private readonly IEnumerable<JobScheduleModel> _jobSchedules;
 
-        public CustomeVehiclesHostedService(
+        public CustomerVehiclesHostedService(
             ISchedulerFactory schedulerFactory,
             IEnumerable<JobScheduleModel> jobSchedules,
             IJobFactory jobFactory)

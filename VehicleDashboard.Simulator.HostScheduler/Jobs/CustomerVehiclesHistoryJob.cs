@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Quartz;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents;
+using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents.Events;
 
 namespace VehicleDashboard.Simulator.HostScheduler.Jobs
 {
@@ -11,10 +11,13 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
     public class CustomerVehiclesHistoryJob : IJob
     {
         private readonly ILogger _logger;
+        private readonly ICustomerVehicleHistoryIntegrationEventService _customerVehicleHistoryIntegrationEventService;
 
-        public CustomerVehiclesHistoryJob(ILogger<CustomerVehiclesHistoryJob> logger )
+        public CustomerVehiclesHistoryJob(ILogger<CustomerVehiclesHistoryJob> logger,
+            ICustomerVehicleHistoryIntegrationEventService customerVehicleHistoryIntegrationEventService)
         {
             _logger = logger;
+            _customerVehicleHistoryIntegrationEventService = customerVehicleHistoryIntegrationEventService;
         }
 
         /// <summary>
@@ -24,8 +27,14 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
         /// <returns></returns>
         public Task Execute(IJobExecutionContext context)
         {
-            //Random rnd = new Random();
-            //_logger.LogWarning("test" + rnd.Next(0, 200).ToString());
+          
+
+            //Create Integration Event to be published through the Event Bus
+            var customerVehicleHistoryChangedEvent = new CustomerVehicleChangedIntegrationEvent("YS2R4X20005399401","ABC123",1,true,DateTime.Now);
+
+            // Publish through the Event Bus and mark the saved event as published
+             _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleHistoryChangedEvent);
+
             return Task.CompletedTask;
         }
     }

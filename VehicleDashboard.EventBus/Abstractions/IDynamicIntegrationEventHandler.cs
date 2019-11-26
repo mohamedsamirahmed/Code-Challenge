@@ -7,3 +7,4 @@ namespace VehicleDashboard.EventBus.Abstractions
         Task Handle(dynamic eventData);
     }
 }
+ 

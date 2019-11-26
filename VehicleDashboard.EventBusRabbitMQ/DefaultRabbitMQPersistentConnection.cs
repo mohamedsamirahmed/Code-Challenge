@@ -14,7 +14,7 @@ namespace VehicleDashboard.EventBusRabbitMQ
         : IRabbitMQPersistentConnection
     {
         private readonly IConnectionFactory _connectionFactory;
-        private readonly ILogger<DefaultRabbitMQPersistentConnection> _logger;
+        private readonly ILogger<DefaultRabbitMQPersistentConnection> _logger; 
         private readonly int _retryCount;
         IConnection _connection;
         bool _disposed;

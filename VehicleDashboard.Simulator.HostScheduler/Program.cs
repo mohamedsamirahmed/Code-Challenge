@@ -24,8 +24,7 @@ namespace VehicleDashboard.Simulator.HostScheduler
    .AddConsole()
    .AddDebug().AddEventSourceLogger();
             ILogger logger = loggerFactory.CreateLogger<Program>();
-            logger.LogInformation(
-   "This is a test of the emergency broadcast system.");
+            logger.LogInformation("This is a test of the emergency broadcast system.");
             CreateWebHostBuilder(args).Build().Run();
 
 

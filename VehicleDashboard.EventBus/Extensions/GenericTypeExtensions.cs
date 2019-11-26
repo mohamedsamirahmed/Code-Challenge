@@ -9,7 +9,7 @@ namespace VehicleDashboard.EventBus.Extensions
         public static string GetGenericTypeName(this Type type)
         {
             var typeName = string.Empty;
-
+             
             if (type.IsGenericType)
             {
                 var genericTypes = string.Join(",", type.GetGenericArguments().Select(t => t.Name).ToArray());

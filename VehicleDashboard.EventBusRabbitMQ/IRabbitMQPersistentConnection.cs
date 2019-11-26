@@ -8,7 +8,7 @@ namespace VehicleDashboard.EventBusRabbitMQ
     {
         bool IsConnected { get; }
 
-        bool TryConnect();
+        bool TryConnect(); 
 
         IModel CreateModel();
     }

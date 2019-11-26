@@ -10,6 +10,6 @@ namespace VehicleDashboard.EventBus.Abstractions
     }
 
     public interface IIntegrationEventHandler
-    {
+    { 
     }
 }

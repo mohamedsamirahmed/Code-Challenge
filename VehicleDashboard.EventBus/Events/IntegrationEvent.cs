@@ -6,7 +6,7 @@ namespace VehicleDashboard.EventBus.Events
     public class IntegrationEvent
     {
         public IntegrationEvent()
-        {
+        {  
             Id = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
         }

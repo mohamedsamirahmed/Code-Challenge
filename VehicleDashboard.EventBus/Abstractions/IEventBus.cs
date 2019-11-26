@@ -8,7 +8,7 @@ namespace VehicleDashboard.EventBus.Abstractions
 
         void Subscribe<T, TH>()
             where T : IntegrationEvent
-            where TH : IIntegrationEventHandler<T>;
+            where TH : IIntegrationEventHandler<T>; 
 
         void SubscribeDynamic<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler;
