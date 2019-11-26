@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Quartz;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using VehicleDashboard.Simulator.HostScheduler.Helpers;
 using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents;
 using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents.Events;
 
@@ -27,15 +29,19 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
         /// <returns></returns>
         public Task Execute(IJobExecutionContext context)
         {
-          
-
             //Create Integration Event to be published through the Event Bus
-            var customerVehicleHistoryChangedEvent = new CustomerVehicleChangedIntegrationEvent("YS2R4X20005399401","ABC123",1,true,DateTime.Now);
-
-            // Publish through the Event Bus and mark the saved event as published
-             _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleHistoryChangedEvent);
+            SimulatorHelper helper = new SimulatorHelper();
+            List<CustomerVehicleChangedIntegrationEvent> customerVehiclesLst = helper.GenerateRandomStatus();
+            foreach (var customerVehicleChangedEvent in customerVehiclesLst)
+            {
+                // Publish through the Event Bus and mark the saved event as published
+                _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleChangedEvent);
+            }
 
             return Task.CompletedTask;
         }
+
+
+      
     }
 }
