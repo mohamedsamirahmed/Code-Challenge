@@ -7,12 +7,16 @@ namespace VehicleDashboard.VehicleService.DTO
 {
     public class CustomerVehiclesDTO
     {
+        public CustomerVehiclesDTO()
+        {
+
+        }
         public CustomerVehiclesDTO(CustomerVehicle customerVehicle)
         {
             VIN = customerVehicle.VehicleId;
             RegNo = customerVehicle.RegNo;
             customerId = customerVehicle.CustomerId;
-            CurrentStatus = customerVehicle.IsConnectedStatus ? "Connected" : "Disconnected";
+            IsConnectedStatus = customerVehicle.IsConnectedStatus;
             LastModificationStatus = customerVehicle.LastStatusModificationTime;
             Customer = new CustomersDTO(customerVehicle.Customer);
         }
@@ -22,8 +26,11 @@ namespace VehicleDashboard.VehicleService.DTO
 
         public int customerId { get; set; }
 
-        public string CurrentStatus { get; set; }
+        public bool IsConnectedStatus { get; set; }
 
+        public string CurrentStatus { get {
+                return IsConnectedStatus ? "Connected" : "Disconnected";
+            } }
         public DateTime LastModificationStatus { get; set; }
 
         public CustomersDTO Customer { get; set; }
@@ -36,6 +43,18 @@ namespace VehicleDashboard.VehicleService.DTO
                 customerDtoLst.Add(new CustomerVehiclesDTO(customerVehicle));
             }
             return customerDtoLst.ToList();
+        }
+
+        public CustomerVehicle GetEntity()
+        {
+            return new CustomerVehicle()
+            {
+                IsConnectedStatus=this.IsConnectedStatus,
+                CustomerId = this.customerId,
+                RegNo = this.RegNo,
+                LastStatusModificationTime = this.LastModificationStatus,
+                VehicleId = this.VIN
+            };
         }
 
     }

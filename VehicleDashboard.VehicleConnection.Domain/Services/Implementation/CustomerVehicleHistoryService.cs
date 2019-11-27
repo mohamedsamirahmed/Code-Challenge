@@ -22,7 +22,7 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
             _logger = logger;
         }
         #region Properties
-        public ICustomerVehicleHistoryRepository customerVehiclesRepo
+        public ICustomerVehicleHistoryRepository customerVehiclesHistoryRepo
         {
             get
             {
@@ -45,8 +45,8 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
             try
             {
                 var CustomerVehicleHistoryEntity = customerVehicleHistoryDto.GetEntity();
-                _customerVehicleHistoryRepo.Add(CustomerVehicleHistoryEntity);
-                await _customerVehicleHistoryRepo.SaveChangesAsync();
+                customerVehiclesHistoryRepo.Add(CustomerVehicleHistoryEntity);
+                await customerVehiclesHistoryRepo.SaveChangesAsync();
             }
             catch (Exception ex)
             {

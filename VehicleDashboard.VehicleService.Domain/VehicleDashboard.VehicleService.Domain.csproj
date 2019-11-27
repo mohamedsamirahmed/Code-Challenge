@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain\VehicleDashboard.VehicleConnection.Domain.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Data\VehicleDashboard.VehicleService.Data.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Domain.Model\VehicleDashboard.VehicleService.Domain.Model.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.DTO\VehicleDashboard.VehicleService.DTO.csproj" />
@@ -14,6 +15,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.EntityFrameworkCore">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents.Events;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 
 namespace VehicleDashboard.Simulator.HostScheduler.Helpers
 {

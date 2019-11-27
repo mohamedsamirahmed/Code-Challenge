@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VehicleDashboard.EventBus.Events;
 
-namespace VehicleDashboard.Simulator.HostScheduler.IntegrationEvents.Events
+namespace VehicleDashboard.EventBusRabbitMQ.Events
 {
     // Integration Events notes: 
     // An Event is “something that has happened in the past”, therefore its name has to be   

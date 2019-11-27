@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using VehicleDashboard.Core.Common.Models;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleConnection.Domain.Services;
 using VehicleDashboard.VehicleConnection.DTO;
 using VehiclesDashboard.VehicleConnection.API.IntegrationEvents;
@@ -18,15 +19,16 @@ namespace VehiclesDashboard.VehicleConnection.API.Controllers
     {
         private ICustomerVehicleHistoryService _vehiclesDashboardService;
         private readonly ILogger<CustomerVehicleHistoryController> _logger;
-        private readonly ICustomerVehicleHistoryIntegrationEventService _customerVehicleHistoryIntegrationEventService;
+       // private readonly ICustomerVehicleHistoryIntegrationEventService _customerVehicleHistoryIntegrationEventService;
 
         public CustomerVehicleHistoryController(ICustomerVehicleHistoryService vehiclesDashboardService, 
-            ILogger<CustomerVehicleHistoryController> logger,
-            ICustomerVehicleHistoryIntegrationEventService customerVehicleHistoryIntegrationEventService)
+            ILogger<CustomerVehicleHistoryController> logger
+            //,ICustomerVehicleHistoryIntegrationEventService customerVehicleHistoryIntegrationEventService
+            )
         {
             _vehiclesDashboardService = vehiclesDashboardService;
             _logger = logger;
-            _customerVehicleHistoryIntegrationEventService = customerVehicleHistoryIntegrationEventService;
+           // _customerVehicleHistoryIntegrationEventService = customerVehicleHistoryIntegrationEventService;
         }
 
         // GET api/CustomerVehicles
@@ -49,10 +51,10 @@ namespace VehiclesDashboard.VehicleConnection.API.Controllers
                     return BadRequest(ModelState);
                 }
                 //Create Integration Event to be published through the Event Bus
-                var customerVehicleHistoryChangedEvent = new CustomerVehicleChangedIntegrationEvent(customerVehicleHistoryDto);
+              //  var customerVehicleHistoryChangedEvent = new CustomerVehicleChangedIntegrationEvent(customerVehicleHistoryDto);
 
                 // Publish through the Event Bus and mark the saved event as published
-                await _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleHistoryChangedEvent);
+              //  await _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleHistoryChangedEvent);
                 return Ok();
             }
             catch (Exception ex)

@@ -8,6 +8,8 @@ using VehicleDashboard.VehicleService.Domain.Repositories.Implementation;
 using VehicleDashboard.VehicleService.DTO;
 using Microsoft.EntityFrameworkCore;
 using VehicleDashboard.Core.Common.Models;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 {
@@ -28,10 +30,14 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 
         private readonly VehicleServiceDataContext _dbContext;
         private ICustomerVehiclesRepository _customerVehiclesRepo;
+        private readonly ILogger<VehicleDashboardService> _logger;
 
-        public VehicleDashboardService(VehicleServiceDataContext dbContext)
+        public VehicleDashboardService(VehicleServiceDataContext dbContext,
+           ILogger<VehicleDashboardService> 
+            logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
         public void Dispose()
         {
@@ -57,6 +63,22 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 
             return returnResponse;
 
+        }
+
+
+        public async Task UpdateCustomerVehicleStatus(CustomerVehiclesDTO customerVehiclesDto)
+        {
+            try
+            {
+                var CustomerVehicleEntity = customerVehiclesDto.GetEntity();
+                customerVehiclesRepo.Update(CustomerVehicleEntity);
+                await customerVehiclesRepo.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw ex;
+            }
         }
     }
 

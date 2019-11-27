@@ -3,9 +3,9 @@ using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.Simulator.HostScheduler.Helpers;
 using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents;
-using VehicleDashboard.Simulator.HostScheduler.IntegrationEvents.Events;
 
 namespace VehicleDashboard.Simulator.HostScheduler.Jobs
 {
@@ -29,6 +29,7 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
         /// <returns></returns>
         public Task Execute(IJobExecutionContext context)
         {
+            _logger.LogInformation("Start Generating Random Numbers using Simulator ");
             //Create Integration Event to be published through the Event Bus
             SimulatorHelper helper = new SimulatorHelper();
             List<CustomerVehicleChangedIntegrationEvent> customerVehiclesLst = helper.GenerateRandomStatus();
@@ -37,6 +38,8 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
                 // Publish through the Event Bus and mark the saved event as published
                 _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleChangedEvent);
             }
+
+            _logger.LogInformation("Generating Random Numbers using Simulator Completed ");
 
             return Task.CompletedTask;
         }

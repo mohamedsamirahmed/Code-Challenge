@@ -1,25 +1,27 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VehicleDashboard.EventBus.Abstractions;
 using VehicleDashboard.EventBusRabbitMQ.Events;
-using VehicleDashboard.VehicleConnection.Domain.Services;
-using VehicleDashboard.VehicleConnection.DTO;
+using VehicleDashboard.VehicleService.Domain.Services;
+using VehicleDashboard.VehicleService.DTO;
 
-namespace VehiclesDashboard.VehicleConnection.API.IntegrationEvents.EventHandling
+namespace VehiclesDashboard.VehicleServices.API.IntegrationEvents.EventHandler
 {
     public class CustomerVehicleChangedIntegrationEventHandler :
      IIntegrationEventHandler<CustomerVehicleChangedIntegrationEvent>
     {
-        private ICustomerVehicleHistoryService _customerVehicleHistoryService;
+        private IVehicleDashboardService _customerVehicleService;
         private readonly ILogger<CustomerVehicleChangedIntegrationEventHandler> _logger;
-         
+
         public CustomerVehicleChangedIntegrationEventHandler(
             ILogger<CustomerVehicleChangedIntegrationEventHandler> logger,
-            ICustomerVehicleHistoryService customerVehicleHistoryService
+            IVehicleDashboardService customerVehicleHistoryService
             )
         {
-            _customerVehicleHistoryService = customerVehicleHistoryService;
+            _customerVehicleService = customerVehicleHistoryService;
             _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
         }
         /// <summary>
@@ -31,23 +33,23 @@ namespace VehiclesDashboard.VehicleConnection.API.IntegrationEvents.EventHandlin
         {
             try
             {
-                CustomerVehicleHistoryDTO customerVehicleDto = new CustomerVehicleHistoryDTO()
+                CustomerVehiclesDTO customerVehicleDto = new CustomerVehiclesDTO()
                 {
-                    ConnectionStatus = customerVehicleEvent.ConnectionStatus,
-                    CustomerId = customerVehicleEvent.CustomerId,
-                    ModificationStatus = customerVehicleEvent.ModificationStatus,
+                    IsConnectedStatus = customerVehicleEvent.ConnectionStatus,
+                    customerId = customerVehicleEvent.CustomerId,
+                    LastModificationStatus = customerVehicleEvent.ModificationStatus,
                     RegNo = customerVehicleEvent.RegNo,
                     VIN = customerVehicleEvent.VIN
                 };
 
-                await _customerVehicleHistoryService.AddCustomerVehicleHistory(customerVehicleDto);
+                await _customerVehicleService.UpdateCustomerVehicleStatus(customerVehicleDto);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 throw ex;
             }
-           
+
         }
     }
 }

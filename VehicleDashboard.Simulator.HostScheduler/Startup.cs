@@ -85,13 +85,13 @@ namespace VehicleDashboard.Simulator.HostScheduler
             {
                 app.UseDeveloperExceptionPage();
             }
-           
 
-            //app.Run(async (context) =>
-            //{
-            //    Random rnd = new Random();
-            //    await context.Response.WriteAsync("Hello World!"+rnd.Next(0, 200).ToString());
-            //});
+
+            app.Run(async (context) =>
+            {
+                //Random rnd = new Random();
+              //  await context.Response.WriteAsync("Hello World!" + rnd.Next(0, 200).ToString());
+            });
 
 
         }

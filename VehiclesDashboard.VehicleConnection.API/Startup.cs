@@ -18,6 +18,7 @@ using RabbitMQ.Client;
 using VehicleDashboard.EventBus;
 using VehicleDashboard.EventBus.Abstractions;
 using VehicleDashboard.EventBusRabbitMQ;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.SPA.Helpers;
 using VehicleDashboard.VehicleConnection.Data;
 using VehicleDashboard.VehicleConnection.Domain.Services;
@@ -42,7 +43,6 @@ namespace VehiclesDashboard.VehicleConnection.API
             // Add service and create Policy with options
             services.AddCors();
             services.AddDbContext<VehicleConnectionHistoryDataContext>(db => db.UseSqlite(_configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("VehiclesDashboard.VehicleConnection.API")));
-            services.AddTransient<ICustomerVehicleHistoryIntegrationEventService, CustomerVehicleHistoryIntegrationEventService>();
             services.AddTransient<ICustomerVehicleHistoryService, CustomerVehicleHistoryService>();
 
             services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
@@ -85,9 +85,9 @@ namespace VehiclesDashboard.VehicleConnection.API
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        private  IServiceProvider ConfigureAutofac(IServiceCollection services)
+        private IServiceProvider ConfigureAutofac(IServiceCollection services)
         {
-            services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
+            // services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             var container = new ContainerBuilder();
             container.Populate(services);
 
@@ -96,10 +96,9 @@ namespace VehiclesDashboard.VehicleConnection.API
 
         private void RegisterEventBus(IServiceCollection services)
         {
-
             var subscriptionClientName = _configuration.GetValue<string>("EventBusSettings:SubscriptionClientName");
 
-                services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
+            services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
                 {
                     var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
                     var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
@@ -114,9 +113,9 @@ namespace VehiclesDashboard.VehicleConnection.API
 
                     return new EventBusRabbitMQ(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
                 });
-            
 
-           
+            services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
+            services.AddSingleton<CustomerVehicleChangedIntegrationEventHandler>();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
@@ -132,7 +131,8 @@ namespace VehiclesDashboard.VehicleConnection.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            else {
+            else
+            {
                 app.UseExceptionHandler(builder =>
                 {
                     builder.Run(async context =>
