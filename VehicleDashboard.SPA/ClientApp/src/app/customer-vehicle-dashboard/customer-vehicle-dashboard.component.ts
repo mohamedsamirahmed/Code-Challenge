@@ -9,7 +9,8 @@ import { CustomerVehicleDashboardService } from './services/customer-vehicle-das
 })
 export class CustomerVehicleDashboardComponent implements OnInit {
 
-
+  pageNumber = 1;
+  pageSize = 5;
   public _cutomerVehicles: CustomerVehicle[];
 
   constructor(private customerVehicleService: CustomerVehicleDashboardService) { }
@@ -19,7 +20,7 @@ export class CustomerVehicleDashboardComponent implements OnInit {
   }
 
   loadCustomerVehicles() {
-    this.customerVehicleService.getcustomerVehiclesList().subscribe((response:any) => {
+    this.customerVehicleService.getcustomerVehiclesList(this.pageNumber, this.pageSize).subscribe((response: any) => {
       if (response.returnStatus)
         this._cutomerVehicles = response.entity;
       else

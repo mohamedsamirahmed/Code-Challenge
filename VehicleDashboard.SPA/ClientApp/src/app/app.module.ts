@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { CustomerVehicleDetailComponent } from './customer-vehicle-details/custo
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    PaginationModule.forRoot(),
     RouterModule.forRoot([
       {
         path: '', component: CustomerVehicleDashboardComponent },

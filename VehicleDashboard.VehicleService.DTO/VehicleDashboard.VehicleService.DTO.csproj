@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Domain.Model\VehicleDashboard.VehicleService.Domain.Model.csproj" />
   </ItemGroup>
 

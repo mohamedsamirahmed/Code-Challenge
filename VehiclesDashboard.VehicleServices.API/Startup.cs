@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +39,9 @@ namespace VehiclesDashboard.VehicleServices.API
         {
             // Add service and create Policy with options
             services.AddCors();
+
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDbContext<VehicleServiceDataContext>(db => db.UseSqlite(_configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("VehiclesDashboard.VehicleServices.API")));
             services.AddTransient<IVehicleDashboardService, VehicleDashboardService>();
             services.AddSingleton<IRabbitMQPersistentConnection>(sp =>

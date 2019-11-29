@@ -10,6 +10,10 @@ using Microsoft.EntityFrameworkCore;
 using VehicleDashboard.Core.Common.Models;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using VehicleDashboard.VehicleService.Domain.Helpers;
+using AutoMapper;
+using VehicleDashboard.Core.Common.Helper;
+using VehicleDashboard.VehicleService.Domain.Mapper_Configuration;
 
 namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 {
@@ -31,37 +35,54 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
         private readonly VehicleServiceDataContext _dbContext;
         private ICustomerVehiclesRepository _customerVehiclesRepo;
         private readonly ILogger<VehicleDashboardService> _logger;
+        private readonly IMapper _mapper;
+
 
         public VehicleDashboardService(VehicleServiceDataContext dbContext,
-           ILogger<VehicleDashboardService> 
-            logger)
+           ILogger<VehicleDashboardService> logger,
+           IMapper mapper)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _mapper = mapper;
         }
         public void Dispose()
         {
             _dbContext.Dispose();
         }
 
-        public ResponseModel<IEnumerable<CustomerVehiclesDTO>> GetCustomerVehicleList()
+        /// <summary>
+        /// get All Customer Vehicles with configured maxnumber of pages and items per page
+        /// </summary>
+        /// <param name="customerVehicleParams">paged list customer vehicles items.</param>
+        /// <returns></returns>
+        public async Task<PagedList<CustomerVehiclesDTO>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams)
         {
-            ResponseModel<IEnumerable<CustomerVehiclesDTO>> returnResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
-            List<CustomerVehiclesDTO> customerVehiclesListDTO = new List<CustomerVehiclesDTO>();
+            //ResponseModel<IEnumerable<CustomerVehiclesDTO>> returnResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
+            //IQueryable<CustomerVehiclesDTO> customerVehiclesListDTO = null;
+
+            PagedList<CustomerVehiclesDTO> pagedCustomerVehiclesDto = null;
             try
             {
-                IQueryable<CustomerVehicle> customerVehicles = customerVehiclesRepo.GetAll().Include(c=>c.Customer);
-                customerVehiclesListDTO= CustomerVehiclesDTO.MapFields(customerVehicles);
+                IQueryable<CustomerVehicle> customerVehicles = customerVehiclesRepo.GetAll().Include(c => c.Customer);
+                var pagedCustomerVehicles = await PagedList<CustomerVehicle>.CreateAsync(customerVehicles, customerVehicleParams.PageNumber, customerVehicleParams.PageSize);
+                pagedCustomerVehiclesDto = Mapping.Mapper.Map<PagedList<CustomerVehicle>, PagedList<CustomerVehiclesDTO>>(pagedCustomerVehicles);
+
+                return pagedCustomerVehiclesDto;
+
             }
             catch (Exception ex)
             {
-                returnResponse.ReturnStatus = false;
-                returnResponse.ReturnMessage.Add(ex.Message);
+                //   returnResponse.ReturnStatus = false;
+                // returnResponse.ReturnMessage.Add(ex.Message);
+
+                _logger.LogError(ex.Message);
             }
 
-            returnResponse.Entity = customerVehiclesListDTO;
+            //  returnResponse.Entity = customerVehiclesListDTO;
+            // return returnResponse;
 
-            return returnResponse;
+            return pagedCustomerVehiclesDto;
 
         }
 
@@ -80,6 +101,8 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
                 throw ex;
             }
         }
+
+
     }
 
 }

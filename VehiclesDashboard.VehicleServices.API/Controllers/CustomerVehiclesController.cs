@@ -2,7 +2,10 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using VehicleDashboard.Core.Common.Models;
+using VehicleDashboard.SPA.Helpers;
+using VehicleDashboard.VehicleService.Domain.Helpers;
 using VehicleDashboard.VehicleService.Domain.Services;
 using VehicleDashboard.VehicleService.DTO;
 
@@ -27,16 +30,23 @@ namespace VehiclesDashboard.VehicleServices.API.Controllers
         /// </summary>
         /// <returns>customer vehicles response status including collection of customer vehicles.</returns>
         [HttpGet]
-        public IActionResult Get()
+        //public IActionResult Get(CustomerVehicleParams customerVehicleParams)
+            public async Task<IActionResult> Get([FromQuery]CustomerVehicleParams customerVehicleParams)
         {
-            ResponseModel<IEnumerable<CustomerVehiclesDTO>> customerVehiclesResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
+          //  ResponseModel<IEnumerable<CustomerVehiclesDTO>> customerVehiclesResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
             try
             {
-                customerVehiclesResponse = _vehiclesDashboardService.GetCustomerVehicleList();
-                if (customerVehiclesResponse.ReturnStatus)
-                    return Ok(customerVehiclesResponse);
-                else
-                    return BadRequest(customerVehiclesResponse);
+                //customerVehiclesResponse = _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
+               var customerVehiclesResponse = await  _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
+                
+                Response.AddPagination(customerVehiclesResponse.CurrentPage, customerVehiclesResponse.PageSize,
+                    customerVehiclesResponse.TotalCount, customerVehiclesResponse.TotalPages);
+
+                return Ok(customerVehiclesResponse);
+                //if (customerVehiclesResponse.ReturnStatus)
+                //    return Ok(customerVehiclesResponse);
+                //else
+                //    return BadRequest(customerVehiclesResponse);
             }
             catch (System.Exception ex)
             {

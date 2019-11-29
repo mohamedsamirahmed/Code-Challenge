@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VehicleDashboard.Core.Common.Helper;
 
 namespace VehicleDashboard.Core.Common.Repository
 {
@@ -25,9 +26,8 @@ namespace VehicleDashboard.Core.Common.Repository
             _context = context;
         }
 
-        public IQueryable<TEntity> GetAll()
-        {
-            return _context.Set<TEntity>().AsQueryable<TEntity>();
+        public IQueryable<TEntity> GetAll() {
+            return  _context.Set<TEntity>();
         }
 
         #endregion

@@ -8,9 +8,13 @@ namespace VehicleDashboard.VehicleService.DTO
 {
    public class CustomersDTO
     {
+        public CustomersDTO()
+        {
+
+        }
         public CustomersDTO(Customer customer)
         {
-            ID=customer.CustomerId;
+            ID = customer.CustomerId;
             Name = customer.Name;
             Address = customer.Address;
             City = customer.City;

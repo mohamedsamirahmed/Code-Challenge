@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain\VehicleDashboard.VehicleConnection.Domain.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Data\VehicleDashboard.VehicleService.Data.csproj" />
