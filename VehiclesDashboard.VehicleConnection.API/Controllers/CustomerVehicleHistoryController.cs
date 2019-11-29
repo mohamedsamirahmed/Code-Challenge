@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using VehicleDashboard.Core.Common.Models;
-using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleConnection.Domain.Services;
 using VehicleDashboard.VehicleConnection.DTO;
-using VehiclesDashboard.VehicleConnection.API.IntegrationEvents;
 
 namespace VehiclesDashboard.VehicleConnection.API.Controllers
 {
@@ -17,51 +13,35 @@ namespace VehiclesDashboard.VehicleConnection.API.Controllers
     [ApiController]
     public class CustomerVehicleHistoryController : ControllerBase
     {
-        private ICustomerVehicleHistoryService _vehiclesDashboardService;
+        private ICustomerVehicleHistoryService _vehiclesHistoryService;
         private readonly ILogger<CustomerVehicleHistoryController> _logger;
-       // private readonly ICustomerVehicleHistoryIntegrationEventService _customerVehicleHistoryIntegrationEventService;
 
-        public CustomerVehicleHistoryController(ICustomerVehicleHistoryService vehiclesDashboardService, 
-            ILogger<CustomerVehicleHistoryController> logger
-            //,ICustomerVehicleHistoryIntegrationEventService customerVehicleHistoryIntegrationEventService
-            )
+        public CustomerVehicleHistoryController(ICustomerVehicleHistoryService vehiclesDashboardService,
+            ILogger<CustomerVehicleHistoryController> logger)
         {
-            _vehiclesDashboardService = vehiclesDashboardService;
+            _vehiclesHistoryService = vehiclesDashboardService;
             _logger = logger;
-           // _customerVehicleHistoryIntegrationEventService = customerVehicleHistoryIntegrationEventService;
         }
 
-        // GET api/CustomerVehicles
-        [HttpGet()]
-        public IEnumerable<string> Get()
+        // GET api/CustomerVehicleHistory/{vehicleId}/{customerId}/{regNo}
+        [HttpGet("{vehicleId}/{customerId}/{regNo}")]
+        public  IActionResult Get(string vehicleId,int customerId,string regNo)
         {
-            return new string[] { "value" };
-        }
-
-
-        //POST api/v1/[controller]/items
-        [HttpPost]
-        [Route("CreateCustomerVehicleHistory")]
-        public async Task<IActionResult> CreateCustomerVehicleHistory([FromBody]CustomerVehicleHistoryDTO customerVehicleHistoryDto)
-        {
+            ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>> customerVehicleHistoryResponse = new ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>>();
             try
             {
-                if (!ModelState.IsValid) {
-                    _logger.LogError("Invalid Input!");
-                    return BadRequest(ModelState);
-                }
-                //Create Integration Event to be published through the Event Bus
-              //  var customerVehicleHistoryChangedEvent = new CustomerVehicleChangedIntegrationEvent(customerVehicleHistoryDto);
-
-                // Publish through the Event Bus and mark the saved event as published
-              //  await _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleHistoryChangedEvent);
-                return Ok();
+                customerVehicleHistoryResponse= _vehiclesHistoryService.GetCustomerVehicleHistory(vehicleId, customerId, regNo);
+                if (customerVehicleHistoryResponse.ReturnStatus)
+                    return Ok(customerVehicleHistoryResponse);
+                else
+                    return BadRequest(customerVehicleHistoryResponse);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                throw new InvalidOperationException("Something wrong happened!. Please try again later.");
+                return BadRequest(ex.Message);
             }
         }
+        
     }
 }

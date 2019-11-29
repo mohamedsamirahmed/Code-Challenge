@@ -1,18 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var environment_prod_1 = require("../../../environments/environment.prod");
-var CustomerVehicleDashboard = /** @class */ (function () {
-    function CustomerVehicleDashboard(http) {
+var CustomerVehicleDashboardService = /** @class */ (function () {
+    function CustomerVehicleDashboardService(http) {
         this.http = http;
         this.baseUrl = environment_prod_1.environment.apiEndpoint;
     }
-    CustomerVehicleDashboard.prototype.getcustomerVehiclesList = function () {
-        return this.http.get(this.baseUrl + '/Values');
+    CustomerVehicleDashboardService.prototype.getcustomerVehiclesList = function () {
+        return this.http.get(this.baseUrl + 'CustomerVehicles');
     };
-    CustomerVehicleDashboard.prototype.getCustomerVehicleDetails = function (customerId, vehicleId) {
-        return this.http.get(this.baseUrl + '/Values' + customerId + '/' + vehicleId);
-    };
-    return CustomerVehicleDashboard;
+    return CustomerVehicleDashboardService;
 }());
-exports.CustomerVehicleDashboard = CustomerVehicleDashboard;
+exports.CustomerVehicleDashboardService = CustomerVehicleDashboardService;
 //# sourceMappingURL=customer-vehicle-dashboard.service.js.map

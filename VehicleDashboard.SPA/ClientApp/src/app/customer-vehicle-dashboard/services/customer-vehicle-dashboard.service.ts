@@ -5,14 +5,16 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class CustomerVehicleDashboardService {
-  baseUrl = environment.apiEndpoint;
+
+  vehicleServiceBaseUrl = environment.VehicleServiceApiEndpoint;
+  VehicleHistoryBaseUrl = environment.VehicleHistoryApiEndpoint;
   constructor(private http: HttpClient) { }
 
   getcustomerVehiclesList() {
-   return this.http.get<CustomerVehicle[]>(this.baseUrl + 'CustomerVehicles');
+    return this.http.get<CustomerVehicle[]>(this.vehicleServiceBaseUrl + 'CustomerVehicles');
   }
 
-//  getCustomerVehicleDetails(customerId, vehicleId) {
-//    return this.http.get<CustomerVehicle>(this.baseUrl + '/Values' + customerId + '/' + vehicleId);
-//  }
+  getcustomerVehicleDetails(customerId, vehicleId, regNo) {
+    return this.http.get<CustomerVehicle>(this.VehicleHistoryBaseUrl + 'CustomerVehicleHistory/' + vehicleId + '/' + customerId + '/' + regNo);
+  }
 }

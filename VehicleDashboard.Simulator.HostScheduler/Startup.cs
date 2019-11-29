@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -89,8 +90,8 @@ namespace VehicleDashboard.Simulator.HostScheduler
 
             app.Run(async (context) =>
             {
-                //Random rnd = new Random();
-              //  await context.Response.WriteAsync("Hello World!" + rnd.Next(0, 200).ToString());
+                Random rnd = new Random();
+                await context.Response.WriteAsync("Hello World!" + rnd.Next(0, 200).ToString());
             });
 
 

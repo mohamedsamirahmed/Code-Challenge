@@ -9,6 +9,7 @@ import { CustomerVehicleDashboardService } from './services/customer-vehicle-das
 })
 export class CustomerVehicleDashboardComponent implements OnInit {
 
+
   public _cutomerVehicles: CustomerVehicle[];
 
   constructor(private customerVehicleService: CustomerVehicleDashboardService) { }

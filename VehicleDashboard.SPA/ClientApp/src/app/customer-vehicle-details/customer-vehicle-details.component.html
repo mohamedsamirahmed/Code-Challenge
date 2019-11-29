@@ -1,0 +1,27 @@
+<h1>Customer Vehicle History</h1>
+
+
+<p *ngIf="!_cutomerVehicleHistoryList"><em>Loading...</em></p>
+
+<table class='table' *ngIf="_cutomerVehicleHistoryList">
+  <thead>
+    <tr>
+      <th>customer</th>
+      <th>VIN</th>
+      <th>Reg #</th>
+      <th>Status</th>
+      <th>Last Modified Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customeVehicle of _cutomerVehicleHistoryList">
+      <td>
+        {{ customeVehicle?.customerId }}
+      </td>
+      <td>{{ customeVehicle?.vin }}</td>
+      <td>{{ customeVehicle?.regNo }}</td>
+      <td>{{ customeVehicle?.connectionStatus }}</td>
+      <td>{{ customeVehicle?.modificationStatus | date:'short' }}</td>
+    </tr>
+  </tbody>
+</table>

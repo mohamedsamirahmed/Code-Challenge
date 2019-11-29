@@ -1,7 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using VehicleDashboard.Core.Common.Models;
 using VehicleDashboard.VehicleConnection.Data;
+using VehicleDashboard.VehicleConnection.Domain.Model;
 using VehicleDashboard.VehicleConnection.Domain.Repositories;
 using VehicleDashboard.VehicleConnection.Domain.Repositories.Implementation;
 using VehicleDashboard.VehicleConnection.DTO;
@@ -54,6 +58,25 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
                 throw ex;
             }
         }
-        
+
+        public  ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo)
+        {
+            ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>> returnResponse = new ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>>();
+            List<CustomerVehicleHistoryDTO> customerVehicleHistoryListDTO = new List<CustomerVehicleHistoryDTO>();
+            try
+            {
+                IQueryable<CustomerVehicleHistory> customerVehicleHistory = customerVehiclesHistoryRepo.GetGustomerVehicleHistory(customerId, vehicleId, regNo);
+                customerVehicleHistoryListDTO = CustomerVehicleHistoryDTO.MapFields(customerVehicleHistory);
+                returnResponse.Entity = customerVehicleHistoryListDTO;
+                returnResponse.TotalRows = customerVehicleHistoryListDTO.Count;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                returnResponse.ReturnStatus = false;
+                returnResponse.ReturnMessage.Add(ex.Message);
+            }
+            return returnResponse;
+        }
     }
 }

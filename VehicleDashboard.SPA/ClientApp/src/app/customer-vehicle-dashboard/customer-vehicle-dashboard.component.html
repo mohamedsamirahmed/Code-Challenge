@@ -1,6 +1,5 @@
-<h1>Weather forecast</h1>
+<h1>Customer Vehicle Dashboard</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
 
 <p *ngIf="!_cutomerVehicles"><em>Loading...</em></p>
 
@@ -12,18 +11,31 @@
       <th>Reg #</th>
       <th>Status</th>
       <th>Last Modified Date</th>
-      </tr>
-</thead>
+      <th></th>
+    </tr>
+  </thead>
   <tbody>
     <tr *ngFor="let customeVehicle of _cutomerVehicles">
-      <td><span>{{ customeVehicle.customer.name }}<br/>
-      {{ customeVehicle.customer.address }}&nbsp;
-      {{ customeVehicle.customer.postalCode }} &nbsp;
-      {{ customeVehicle.customer.city }}</span></td>
-      <td>{{ customeVehicle.vin }}</td>
-      <td>{{ customeVehicle.regNo }}</td>
-      <td>{{ customeVehicle.currentStatus }}</td>
-      <td>{{ customeVehicle.lastModificationStatus }}</td>
+      <td>
+        <span>
+          {{ customeVehicle?.customer?.name }}<br />
+          {{ customeVehicle?.customer?.address }}&nbsp;
+          {{ customeVehicle?.customer?.postalCode }} &nbsp;
+          {{ customeVehicle?.customer?.city }}
+        </span>
+      </td>
+      <td>{{ customeVehicle?.vin }}</td>
+      <td>{{ customeVehicle?.regNo }}</td>
+      <td>{{ customeVehicle?.currentStatus }}</td>
+      <td>{{ customeVehicle?.lastModificationStatus | date:'short'  }}</td>
+      <td>
+        <ul>
+          <button class="btn btn-primary"
+                  [routerLink]="['/customerVehicleHistory/',customeVehicle.customer.id,customeVehicle.vin,customeVehicle.regNo ]">
+            <i class="fas fa-list" title="Show History"></i>
+          </button>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>

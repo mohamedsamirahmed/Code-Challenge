@@ -9,6 +9,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomerVehicleDashboardComponent } from './customer-vehicle-dashboard/customer-vehicle-dashboard.component';
 import { CustomerVehicleDashboardService } from './customer-vehicle-dashboard/services/customer-vehicle-dashboard.service';
+import { CustomerVehicleDetailComponent } from './customer-vehicle-details/customer-vehicle-details.component';
 
 @NgModule({
   declarations: [
@@ -16,17 +17,20 @@ import { CustomerVehicleDashboardService } from './customer-vehicle-dashboard/se
     NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
-    CustomerVehicleDashboardComponent
+    CustomerVehicleDashboardComponent,
+    CustomerVehicleDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: CustomerVehicleDashboardComponent },
-      //{ path: 'customerVehicleHistory/:id/:vin', component: CustomerVehicleDetailsComponent },
+      {
+        path: '', component: CustomerVehicleDashboardComponent },
+      { path: 'customerVehicleHistory/:id/:vin/:regNo', component: CustomerVehicleDetailComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' }
     ])
   ],
   providers: [CustomerVehicleDashboardService],

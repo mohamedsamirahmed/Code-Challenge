@@ -14,7 +14,7 @@ namespace VehicleDashboard.VehicleConnection.Data
             modelBuilder.Entity<CustomerVehicleHistory>().Property(p => p.HistoryId).ValueGeneratedOnAdd();
         }
 
-        public DbSet<CustomerVehicleHistory> Customers { get; set; }
+        public DbSet<CustomerVehicleHistory> CustomerehicleHistory { get; set; }
        
     }
 }

@@ -23,33 +23,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.SPA", "VehicleDashboard.SPA\VehicleDashboard.SPA.csproj", "{AC12E064-7A3B-40FF-B3AC-0064431E25E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.Simulator.HostScheduler", "VehicleDashboard.Simulator.HostScheduler\VehicleDashboard.Simulator.HostScheduler.csproj", "{FC5801FA-EA8E-4640-92D7-5A7BF00416B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.Simulator.HostScheduler", "VehicleDashboard.Simulator.HostScheduler\VehicleDashboard.Simulator.HostScheduler.csproj", "{FC5801FA-EA8E-4640-92D7-5A7BF00416B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{44DCF1BC-5A7D-4056-B20A-D014C6B9E605}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{15F4CE6F-8673-482E-BCEF-A5E2543CAD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.EventBus", "VehicleDashboard.EventBus\VehicleDashboard.EventBus.csproj", "{8DCD6796-450C-4BD4-ACDF-6740FF064FE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.EventBus", "VehicleDashboard.EventBus\VehicleDashboard.EventBus.csproj", "{8DCD6796-450C-4BD4-ACDF-6740FF064FE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.EventBusRabbitMQ", "VehicleDashboard.EventBusRabbitMQ\VehicleDashboard.EventBusRabbitMQ.csproj", "{588DFEEB-92A4-43AE-A8BE-B17FDF2FACEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.EventBusRabbitMQ", "VehicleDashboard.EventBusRabbitMQ\VehicleDashboard.EventBusRabbitMQ.csproj", "{588DFEEB-92A4-43AE-A8BE-B17FDF2FACEE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VehicleService", "VehicleService", "{0E3FB98C-B791-47E9-8321-7538B981B0C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VehicleConnection", "VehicleConnection", "{341568B0-00C1-4186-A64D-F00F510CA262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleConnection.Data", "VehicleDashboard.VehicleConnection.Data\VehicleDashboard.VehicleConnection.Data.csproj", "{EC0DAE02-778F-4A07-B950-6127725D7557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.VehicleConnection.Data", "VehicleDashboard.VehicleConnection.Data\VehicleDashboard.VehicleConnection.Data.csproj", "{EC0DAE02-778F-4A07-B950-6127725D7557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleConnection.Domain", "VehicleDashboard.VehicleConnection.Domain\VehicleDashboard.VehicleConnection.Domain.csproj", "{530B98CC-275D-41A1-BEA3-D6A7A71A9F8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.VehicleConnection.Domain", "VehicleDashboard.VehicleConnection.Domain\VehicleDashboard.VehicleConnection.Domain.csproj", "{530B98CC-275D-41A1-BEA3-D6A7A71A9F8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleConnection.Domain.Model", "VehicleDashboard.VehicleConnection.Domain.Model\VehicleDashboard.VehicleConnection.Domain.Model.csproj", "{838A5087-719D-4563-B0C6-86A91B31F295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.VehicleConnection.Domain.Model", "VehicleDashboard.VehicleConnection.Domain.Model\VehicleDashboard.VehicleConnection.Domain.Model.csproj", "{838A5087-719D-4563-B0C6-86A91B31F295}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleConnection.DTO", "VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj", "{DFC1A83D-74A2-4DAE-B19C-336F5C1B2BB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.VehicleConnection.DTO", "VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj", "{DFC1A83D-74A2-4DAE-B19C-336F5C1B2BB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesDashboard.VehicleConnection.API", "VehiclesDashboard.VehicleConnection.API\VehiclesDashboard.VehicleConnection.API.csproj", "{C603630B-B5AB-4AC6-8FDB-AE8BC8E8219B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesDashboard.VehicleConnection.API", "VehiclesDashboard.VehicleConnection.API\VehiclesDashboard.VehicleConnection.API.csproj", "{C603630B-B5AB-4AC6-8FDB-AE8BC8E8219B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.Core.Common", "VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj", "{DB59F642-0690-466F-B77F-65899A2F9BF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.Core.Common", "VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj", "{DB59F642-0690-466F-B77F-65899A2F9BF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesDashboard.Common.Utility", "VehiclesDashboard.Common.Utility\VehiclesDashboard.Common.Utility.csproj", "{668B96FE-F3E6-46C1-B443-076806AF043E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesDashboard.Common.Utility", "VehiclesDashboard.Common.Utility\VehiclesDashboard.Common.Utility.csproj", "{668B96FE-F3E6-46C1-B443-076806AF043E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -134,7 +134,7 @@ Global
 		{AC12E064-7A3B-40FF-B3AC-0064431E25E7} = {1DB126BC-6E19-4B4B-92B4-B524AEB5788C}
 		{FC5801FA-EA8E-4640-92D7-5A7BF00416B8} = {3F30E395-B36E-48FF-85CA-65BF6747F238}
 		{15F4CE6F-8673-482E-BCEF-A5E2543CAD1B} = {44DCF1BC-5A7D-4056-B20A-D014C6B9E605}
-		{8DCD6796-450C-4BD4-ACDF-6740FF064FE0} = {15F4CE6F-8673-482E-BCEF-A5E2543CAD1B}
+		{8DCD6796-450C-4BD4-ACDF-6740FF064FE0} = {1DB126BC-6E19-4B4B-92B4-B524AEB5788C}
 		{588DFEEB-92A4-43AE-A8BE-B17FDF2FACEE} = {15F4CE6F-8673-482E-BCEF-A5E2543CAD1B}
 		{0E3FB98C-B791-47E9-8321-7538B981B0C3} = {6153F6F5-0C1C-4885-A557-4780D60346DA}
 		{341568B0-00C1-4186-A64D-F00F510CA262} = {6153F6F5-0C1C-4885-A557-4780D60346DA}
