@@ -1,7 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { CustomerVehicle } from '../models/customer-vehicle';
-import { CustomerVehicleDashboardService } from './services/customer-vehicle-dashboard.service';
+import { Pagination } from '../models/Pagination';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { Lookup } from '../models/lookup';
+import { CustomerVehicleDashboardService } from '../services/customer-vehicle-dashboard.service';
 
 @Component({
   selector: 'app-customer-vehicle-dashboard',
@@ -9,20 +12,75 @@ import { CustomerVehicleDashboardService } from './services/customer-vehicle-das
 })
 export class CustomerVehicleDashboardComponent implements OnInit {
 
-  pageNumber = 1;
-  pageSize = 5;
-  public _cutomerVehicles: CustomerVehicle[];
+  public _customerVehicles: CustomerVehicle[];
+  pagination: Pagination
+  customerVehicleParams: any = {};
+  public _customers: Lookup[];
+  public _vehicles: Lookup[];
 
-  constructor(private customerVehicleService: CustomerVehicleDashboardService) { }
+  vehicleServiceBaseUrl = environment.VehicleServiceApiEndpoint;
+  customerServiceEndpoint = this.vehicleServiceBaseUrl + 'CustomerVehicles/GetCustomers';
+  vehicleServiceEndpoint = this.vehicleServiceBaseUrl + 'CustomerVehicles/GetVehicles';
+
+  constructor(private customerVehicleService: CustomerVehicleDashboardService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.customerVehicleParams.Customer = "";
+    this.customerVehicleParams.Vehicle = "";
+
+    this.loadCustomerVehicles();
+
+    //Get All Customer Vehicles from service
+    this.loadCustomerLookup(this.customerServiceEndpoint);
+    //Get all vehicles for lookup filter
+    this.loadVehicleLookup(this.vehicleServiceEndpoint);
+  }
+
+  //reset filter component values
+  resetFilters() {
+    this.customerVehicleParams.Customer = "";
+    this.customerVehicleParams.Vehicle = "";
+    this.loadCustomerVehicles();
+
+  }
+
+  //on change pagining 
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
     this.loadCustomerVehicles();
   }
 
+
+  //get all current page customer vehicles
   loadCustomerVehicles() {
-    this.customerVehicleService.getcustomerVehiclesList(this.pageNumber, this.pageSize).subscribe((response: any) => {
+    let pageNumber = null;
+    let itemsPerPage = null;
+    if (this.pagination) {
+      pageNumber = this.pagination.currentPage;
+      itemsPerPage = this.pagination.itemsPerPage;
+    }
+
+    //Get All Customer Vehicles from service
+    this.customerVehicleService.getcustomerVehiclesList(pageNumber, itemsPerPage, this.customerVehicleParams).subscribe((response: any) => {
+      this._customerVehicles = response.result;
+      this.pagination = response.pagination
+      //if (response.returnStatus)
+      //  this._cutomerVehicles = response.entity;
+      //else
+      //  console.log(response.returnMessage);
+
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  //get all customers
+  loadCustomerLookup(serviceEndPoint) {
+    //Get all Customers for lookup filter
+    this.customerVehicleService.getlookupList(serviceEndPoint).subscribe((response: any) => {
       if (response.returnStatus)
-        this._cutomerVehicles = response.entity;
+        this._customers = response.entity;
       else
         console.log(response.returnMessage);
 
@@ -30,4 +88,19 @@ export class CustomerVehicleDashboardComponent implements OnInit {
       console.log(error);
     });
   }
+
+  //get all vehicles
+  loadVehicleLookup(serviceEndPoint) {
+    //Get all Customers for lookup filter
+    this.customerVehicleService.getlookupList(serviceEndPoint).subscribe((response: any) => {
+      if (response.returnStatus)
+        this._vehicles = response.entity;
+      else
+        console.log(response.returnMessage);
+
+    }, error => {
+      console.log(error);
+    });
+  }
+
 }

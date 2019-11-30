@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VehicleDashboard.EventBusRabbitMQ\VehicleDashboard.EventBusRabbitMQ.csproj" />
-    <ProjectReference Include="..\VehicleDashboard.SPA\VehicleDashboard.SPA.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Data\VehicleDashboard.VehicleService.Data.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleService.Domain\VehicleDashboard.VehicleService.Domain.csproj" />
   </ItemGroup>

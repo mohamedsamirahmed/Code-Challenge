@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using VehicleDashboard.Core.Common.Helper;
 using VehicleDashboard.Core.Common.Models;
-using VehicleDashboard.SPA.Helpers;
 using VehicleDashboard.VehicleService.Domain.Helpers;
 using VehicleDashboard.VehicleService.Domain.Services;
 using VehicleDashboard.VehicleService.DTO;
@@ -30,15 +30,14 @@ namespace VehiclesDashboard.VehicleServices.API.Controllers
         /// </summary>
         /// <returns>customer vehicles response status including collection of customer vehicles.</returns>
         [HttpGet]
-        //public IActionResult Get(CustomerVehicleParams customerVehicleParams)
-            public async Task<IActionResult> Get([FromQuery]CustomerVehicleParams customerVehicleParams)
+        public async Task<IActionResult> Get([FromQuery]CustomerVehicleParams customerVehicleParams)
         {
-          //  ResponseModel<IEnumerable<CustomerVehiclesDTO>> customerVehiclesResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
+            //  ResponseModel<IEnumerable<CustomerVehiclesDTO>> customerVehiclesResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
             try
             {
                 //customerVehiclesResponse = _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
-               var customerVehiclesResponse = await  _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
-                
+                var customerVehiclesResponse = await _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
+
                 Response.AddPagination(customerVehiclesResponse.CurrentPage, customerVehiclesResponse.PageSize,
                     customerVehiclesResponse.TotalCount, customerVehiclesResponse.TotalPages);
 
@@ -51,34 +50,45 @@ namespace VehiclesDashboard.VehicleServices.API.Controllers
             catch (System.Exception ex)
             {
                 _logger.LogError(ex.Message);
-                throw new InvalidOperationException("Something wrong happened!. Please try again later.");
+                return BadRequest("Something wrong happened!. Please try again later.");
             }
-
         }
 
-        // GET api/CustomerVehicles/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+
+        [HttpGet("GetCustomers")]
+        public IActionResult GetCustomers()
         {
-            return "value";
+            try
+            {
+                ResponseModel<IQueryable<LookupDTO>> customerResponse = new ResponseModel<IQueryable<LookupDTO>>();
+                customerResponse = _vehiclesDashboardService.GetCustomerLookup();
+                if (!customerResponse.ReturnStatus)
+                    return BadRequest(customerResponse);
+                return Ok(customerResponse);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest("Something wrong happened!. Please try again later.");
+            }
         }
 
-        // POST api/CustomerVehicles
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetVehicles")]
+        public IActionResult GetVehicles()
         {
-        }
-
-        // PUT api/CustomerVehicles/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/CustomerVehicles/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            try
+            {
+                ResponseModel<IQueryable<LookupDTO>> vehicleResponse = new ResponseModel<IQueryable<LookupDTO>>();
+                vehicleResponse = _vehiclesDashboardService.GetVehicleLookup();
+                if (!vehicleResponse.ReturnStatus)
+                    return BadRequest(vehicleResponse);
+                return Ok(vehicleResponse);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest("Something wrong happened!. Please try again later.");
+            }
         }
     }
 }

@@ -21,21 +21,25 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\customer-vehicle-dashboard\services\**" />
     <Compile Remove="ClientApp\src\app\customer-vehicles-dashboard\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\customer-vehicle-dashboard\services\**" />
     <Content Remove="ClientApp\src\app\customer-vehicles-dashboard\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\customer-vehicle-dashboard\services\**" />
     <EmbeddedResource Remove="ClientApp\src\app\customer-vehicles-dashboard\**" />
+    <None Remove="ClientApp\src\app\customer-vehicle-dashboard\services\**" />
     <None Remove="ClientApp\src\app\customer-vehicles-dashboard\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\customer-vehicle-dashboard\services\customer-vehicle-dashboard.service.ts" />
     <None Remove="ClientApp\src\app\models\customer-vehicle.ts" />
     <None Remove="ClientApp\src\app\models\customer.ts" />
+    <None Remove="ClientApp\src\app\models\lookup.ts" />
     <None Remove="ClientApp\src\app\models\Pagination.ts" />
     <None Remove="ClientApp\src\app\Shared\error.interceptor.ts" />
   </ItemGroup>
@@ -45,9 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\customer-vehicle-dashboard\services\customer-vehicle-dashboard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\customer-vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\customer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\lookup.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\pagination.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Shared\error.interceptor.ts" />
   </ItemGroup>
@@ -55,6 +59,7 @@
     <Content Include="**\*.ts" Exclude="$(GlobalExclude)" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="ClientApp\src\app\models\lookup.ts" />
     <Content Remove="ClientApp\src\app\models\Pagination.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

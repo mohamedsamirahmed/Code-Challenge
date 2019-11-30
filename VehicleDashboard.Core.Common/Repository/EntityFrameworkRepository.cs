@@ -26,13 +26,13 @@ namespace VehicleDashboard.Core.Common.Repository
             _context = context;
         }
 
-        public IQueryable<TEntity> GetAll() {
-            return  _context.Set<TEntity>();
-        }
-
         #endregion
 
-        #region IRepository Members
+        #region CRUD Operations
+        public IQueryable<TEntity> GetAll()
+        {
+            return _context.Set<TEntity>();
+        }
 
         public TEntity Add(TEntity Entity)
         {
@@ -81,11 +81,6 @@ namespace VehicleDashboard.Core.Common.Repository
             return _context.SaveChanges();
         }
 
-        public Task<int> SaveChangesAsync()
-        {
-            return _context.SaveChangesAsync();
-        }
-
         public TEntity GetById(object KeyValue)
         {
             if (KeyValue == null) throw new ArgumentNullException("Entity is null");
@@ -101,6 +96,12 @@ namespace VehicleDashboard.Core.Common.Repository
 
         #endregion
 
+        #region Async Operations
+        public Task<int> SaveChangesAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
+        #endregion
         #region Dispose Context
 
         public void Dispose()

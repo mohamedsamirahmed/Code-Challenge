@@ -17,43 +17,51 @@ namespace VehicleDashboard.VehicleConnection.DTO
             VIN = customerVehicle.VehicleId;
             RegNo = customerVehicle.RegNo;
             CustomerId = customerVehicle.CustomerId;
+            CustomerName = customerVehicle.CustomerName;
             ConnectionStatus = customerVehicle.ConnectionStatus;
-            ModificationStatus = customerVehicle.StatusModificationTime!=null?customerVehicle.StatusModificationTime:DateTime.Now;
+            ModificationStatus = customerVehicle.StatusModificationTime != null ? customerVehicle.StatusModificationTime : DateTime.Now;
         }
 
-      //  [Required]
         public string VIN { get; set; }
 
-      //  [Required]
         public string RegNo { get; set; }
 
-     //   [Required]
         public int CustomerId { get; set; }
 
-    //    [Required]
         public bool ConnectionStatus { get; set; }
-
-        
-        public DateTime ModificationStatus { get; set; }
-
-        public static List<CustomerVehicleHistoryDTO> MapFields(IQueryable<CustomerVehicleHistory> customerVehicleHistoryList)
+        public string CurrentStatus
         {
-            List<CustomerVehicleHistoryDTO> customerDtoLst = new List<CustomerVehicleHistoryDTO>();
-            foreach (CustomerVehicleHistory customerVehicleHistory in customerVehicleHistoryList)
+            get
             {
-                customerDtoLst.Add(new CustomerVehicleHistoryDTO(customerVehicleHistory));
+                return this.ConnectionStatus ? "Connected" : "Disconnected";
             }
-            return customerDtoLst.ToList();
         }
 
-        public CustomerVehicleHistory GetEntity() {
+        public string CustomerName { get; set; }
+
+
+        public DateTime ModificationStatus { get; set; }
+
+        //public static List<CustomerVehicleHistoryDTO> MapFields(IQueryable<CustomerVehicleHistory> customerVehicleHistoryList)
+        //{
+        //    List<CustomerVehicleHistoryDTO> customerDtoLst = new List<CustomerVehicleHistoryDTO>();
+        //    foreach (CustomerVehicleHistory customerVehicleHistory in customerVehicleHistoryList)
+        //    {
+        //        customerDtoLst.Add(new CustomerVehicleHistoryDTO(customerVehicleHistory));
+        //    }
+        //    return customerDtoLst.ToList();
+        //}
+
+        public CustomerVehicleHistory GetEntity()
+        {
             return new CustomerVehicleHistory()
             {
                 ConnectionStatus = this.ConnectionStatus,
                 CustomerId = this.CustomerId,
                 RegNo = this.RegNo,
                 StatusModificationTime = this.ModificationStatus,
-                VehicleId = this.VIN
+                VehicleId = this.VIN,
+                CustomerName = this.CustomerName
             };
         }
 

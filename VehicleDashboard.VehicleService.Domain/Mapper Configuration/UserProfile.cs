@@ -27,10 +27,6 @@ namespace VehicleDashboard.VehicleService.Domain.Mapper_Configuration
     {
         public MappingProfile()
         {
-            // Default mapping when property names are same
-            //CreateMap<CustomerVehicle, CustomerVehiclesDTO>();
-
-
             //  Mapping when property names are different
             CreateMap<CustomerVehicle, CustomerVehiclesDTO>()
                 .ForMember(dest =>
@@ -49,26 +45,6 @@ namespace VehicleDashboard.VehicleService.Domain.Mapper_Configuration
                          .ForMember(dest =>
                          dest.ID,
                          opt => opt.MapFrom(src => src.CustomerId));
-            
-            //.ForMember(dest =>
-            //dest.Customer.ID,
-            //opt => opt.MapFrom(src => src.Customer.CustomerId))
-            //.ForMember(dest =>
-            //dest.Customer.Address,
-            //opt => opt.MapFrom(src => src.Customer.Address))
-            //.ForMember(dest =>
-            //dest.Customer.City,
-            //opt => opt.MapFrom(src => src.Customer.City))
-            //.ForMember(dest =>
-            //dest.Customer.Name,
-            //opt => opt.MapFrom(src => src.Customer.Name))
-            //.ForMember(dest =>
-            //dest.Customer.PostalCode,
-            //opt => opt.MapFrom(src => src.Customer.PostalCode))
-            //.ForMember(dest => dest.Customer, opt => opt.Ignore())
-            // ;
-
-
         }
     }
 }

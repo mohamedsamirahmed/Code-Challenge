@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleDashboard.VehicleConnection.Data;
 
 namespace VehiclesDashboard.VehicleConnection.API.Migrations
 {
     [DbContext(typeof(VehicleConnectionHistoryDataContext))]
-    partial class VehicleConnectionHistoryDataContextModelSnapshot : ModelSnapshot
+    [Migration("20191130152441_AddCustomerNameColumn")]
+    partial class AddCustomerNameColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

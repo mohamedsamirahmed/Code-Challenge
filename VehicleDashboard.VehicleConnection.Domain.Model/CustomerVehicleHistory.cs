@@ -9,8 +9,12 @@ namespace VehicleDashboard.VehicleConnection.Domain.Model
     {
         [Key]
         public int HistoryId { get; set; }
+
         [Required]
         public int CustomerId { get; set; }
+
+        [Required]
+        public string CustomerName { get; set; }
 
         [Required]
         public string VehicleId { get; set; }

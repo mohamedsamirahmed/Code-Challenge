@@ -1,4 +1,14 @@
 <h1>Customer Vehicle History</h1>
+<button class="btn btn-primary"
+        [routerLink]="['/']">
+  <i class="fa fa-hand-o-left fa-6" title="Back"></i>
+</button>
+<button class="btn btn-primary"
+        (click)="Startup()">
+  <i class="fa fa-refresh fa-6" title="Refresh Data"></i>
+</button>
+
+
 
 
 <p *ngIf="!_cutomerVehicleHistoryList"><em>Loading...</em></p>
@@ -16,12 +26,20 @@
   <tbody>
     <tr *ngFor="let customeVehicle of _cutomerVehicleHistoryList">
       <td>
-        {{ customeVehicle?.customerId }}
+        {{ customeVehicle?.customerName }}
       </td>
       <td>{{ customeVehicle?.vin }}</td>
       <td>{{ customeVehicle?.regNo }}</td>
-      <td>{{ customeVehicle?.connectionStatus }}</td>
+      <td>{{ customeVehicle?.currentStatus }}</td>
       <td>{{ customeVehicle?.modificationStatus | date:'short' }}</td>
     </tr>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+              [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+
+</div>

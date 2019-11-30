@@ -30,15 +30,15 @@ namespace VehicleDashboard.VehicleService.DTO
 
         public string PostalCode { get; set; }
 
-        public static List<CustomersDTO> MapFields(IQueryable<Customer> customerLst)
-        {
-            List<CustomersDTO> customerDtoLst = new List<CustomersDTO>();
-            foreach (Customer cus in customerLst)
-            {
-                customerDtoLst.Add(new CustomersDTO(cus));
-            }
-            return customerDtoLst.ToList();
-        }
+        //public static List<CustomersDTO> MapFields(IQueryable<Customer> customerLst)
+        //{
+        //    List<CustomersDTO> customerDtoLst = new List<CustomersDTO>();
+        //    foreach (Customer cus in customerLst)
+        //    {
+        //        customerDtoLst.Add(new CustomersDTO(cus));
+        //    }
+        //    return customerDtoLst.ToList();
+        //}
 
     }
 }

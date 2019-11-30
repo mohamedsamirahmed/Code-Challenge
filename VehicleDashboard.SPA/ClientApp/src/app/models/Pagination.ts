@@ -1,11 +1,11 @@
 export interface Pagination {
   currentPage: number;
-  itemPerPage: number;
+  itemsPerPage: number;
   totalItems: number;
   totalPages: number;
 }
 
 export class PaginatedResult<T> {
   result: T;
-  paginations: Pagination;
+  pagination: Pagination;
 }

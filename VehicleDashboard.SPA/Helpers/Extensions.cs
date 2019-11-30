@@ -1,34 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VehicleDashboard.Core.Common.Helper;
 
 namespace VehicleDashboard.SPA.Helpers
 {
     public static class Extensions
     {
-        public static void AddApplicationError(this HttpResponse response, string message)
-        {
-            response.Headers.Add("application-Error", message);
-            response.Headers.Add("Access-Control-Expose-Headers", "application-Error");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-        }
+        //public static void AddApplicationError(this HttpResponse response, string message)
+        //{
+        //    response.Headers.Add("application-Error", message);
+        //    response.Headers.Add("Access-Control-Expose-Headers", "application-Error");
+        //    response.Headers.Add("Access-Control-Allow-Origin", "*");
+        //}
 
-        public static void AddPagination(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems, int totalPages)
-        {
-            var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
+        //public static void AddPagination(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems, int totalPages)
+        //{
+        //    var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
             
-            //pass values in response header into json camelcase format to be easy deal with angular
-            var camelCaseFormatter = new JsonSerializerSettings();
-            camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        //    //pass values in response header into json camelcase format to be easy deal with angular
+        //    var camelCaseFormatter = new JsonSerializerSettings();
+        //    camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader,camelCaseFormatter));
-            response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
-        }
+        //    response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader,camelCaseFormatter));
+        //    response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
+        //}
 
     }
 }

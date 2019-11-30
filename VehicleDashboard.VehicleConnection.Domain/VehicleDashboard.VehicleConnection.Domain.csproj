@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Microsoft.EntityFrameworkCore">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -18,7 +22,6 @@
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Data\VehicleDashboard.VehicleConnection.Data.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain.Model\VehicleDashboard.VehicleConnection.Domain.Model.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj" />
-    <ProjectReference Include="..\VehicleDashboard.VehicleService.Domain.Model\VehicleDashboard.VehicleService.Domain.Model.csproj" />
   </ItemGroup>
 
 </Project>

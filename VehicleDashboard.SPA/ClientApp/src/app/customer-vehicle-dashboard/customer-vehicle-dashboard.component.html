@@ -1,9 +1,37 @@
 <h1>Customer Vehicle Dashboard</h1>
 
 
-<p *ngIf="!_cutomerVehicles"><em>Loading...</em></p>
+<p *ngIf="!_customerVehicles"><em>Loading...</em></p>
 
-<table class='table' *ngIf="_cutomerVehicles">
+<div class="text-center mt-3" *ngIf="_customerVehicles">
+  <h2>Your matches - {{pagination.totalItems}} found</h2>
+</div>
+
+<form class="form-inline" #form="ngForm" (ngSubmit)="loadCustomerVehicles()" novalidate>
+
+  <div class="form-group px-2">
+    <label for="Customer">Customer </label>
+    <select class="form-control ml-1" style="width: 130px" id="Customer" name="Customer"
+            [(ngModel)]="customerVehicleParams.Customer">
+      <option value="" selected>Select Customer</option>
+      <option *ngFor="let customer of _customers" [value]="customer.value">{{customer.text}}</option>
+    </select>
+  </div>
+  <div class="form-group px-2">
+    <label for="Vehicle">Vehicle </label>
+    <select class="form-control ml-1" style="width: 130px" id="Vehicle" name="Vehicle"
+            [(ngModel)]="customerVehicleParams.Vehicle">
+      <option value="" selected>Select Vehicle</option>
+      <option *ngFor="let vehicle of _vehicles" [value]="vehicle.value">{{vehicle.text}}</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
+  <button type="button" class="btn btn-info" (click)="resetFilter()" style="margin-left:10px">Reset Filter</button>
+
+</form>
+<br>
+<table class='table' *ngIf="_customerVehicles">
   <thead>
     <tr>
       <th>customer</th>
@@ -15,7 +43,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let customeVehicle of _cutomerVehicles">
+    <tr *ngFor="let customeVehicle of _customerVehicles">
       <td>
         <span>
           {{ customeVehicle?.customer?.name }}<br />
@@ -32,7 +60,7 @@
         <ul>
           <button class="btn btn-primary"
                   [routerLink]="['/customerVehicleHistory/',customeVehicle.customer.id,customeVehicle.vin,customeVehicle.regNo ]">
-            <i class="fas fa-list" title="Show History"></i>
+            <i class="fa fa-bars fa-5" title="Show History"></i>
           </button>
         </ul>
       </td>
@@ -40,9 +68,9 @@
   </tbody>
 </table>
 
-
-<div class="d-flex justify-content-center">
-  <pagination [boundaryLinks]="true" [totalItems]="77"
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+              [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)"
               previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
   </pagination>
 

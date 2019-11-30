@@ -18,14 +18,16 @@ namespace VehicleDashboard.EventBusRabbitMQ.Events
 
 
         public DateTime ModificationStatus { get; set; }
+        public string CustomerName { get; set; }
 
-        public CustomerVehicleChangedIntegrationEvent(string VIN, string RegNo, int CustomerId, bool ConnectionStatus, DateTime ModificationStatus)
+        public CustomerVehicleChangedIntegrationEvent(string VIN, string RegNo, int CustomerId, bool ConnectionStatus, DateTime ModificationStatus,string customerName)
         {
             this.VIN = VIN;
             this.RegNo = RegNo;
             this.CustomerId = CustomerId;
             this.ModificationStatus = ModificationStatus;
             this.ConnectionStatus = ConnectionStatus;
+            this.CustomerName = CustomerName;
         }
     }
 }

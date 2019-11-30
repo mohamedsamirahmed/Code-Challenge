@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -15,15 +12,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
+using VehicleDashboard.Core.Common.Helper;
 using VehicleDashboard.EventBus;
 using VehicleDashboard.EventBus.Abstractions;
 using VehicleDashboard.EventBusRabbitMQ;
 using VehicleDashboard.EventBusRabbitMQ.Events;
-using VehicleDashboard.SPA.Helpers;
 using VehicleDashboard.VehicleConnection.Data;
 using VehicleDashboard.VehicleConnection.Domain.Services;
 using VehicleDashboard.VehicleConnection.Domain.Services.Implementation;
-using VehiclesDashboard.VehicleConnection.API.IntegrationEvents;
 using VehiclesDashboard.VehicleConnection.API.IntegrationEvents.EventHandling;
 
 namespace VehiclesDashboard.VehicleConnection.API

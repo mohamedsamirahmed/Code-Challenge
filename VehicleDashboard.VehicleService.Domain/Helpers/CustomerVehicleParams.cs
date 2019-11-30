@@ -7,5 +7,7 @@ namespace VehicleDashboard.VehicleService.Domain.Helpers
 {
     public class CustomerVehicleParams : EntityParams
     {
+        public string Customer { get; set; }
+        public string Vehicle { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace VehicleDashboard.Core.Common.Repository
     public interface IEntityFrameworkRepository<TEntity> : IDisposable
              where TEntity : class
     {
+        #region CRUD Operations
+
         TEntity Add(TEntity Entity);
 
         TEntity Update(TEntity Entity);
@@ -21,6 +23,11 @@ namespace VehicleDashboard.Core.Common.Repository
         IQueryable<TEntity> GetAll();
 
         int SaveChanges();
+
+        #endregion
+
+        #region async Operations
         Task<int> SaveChangesAsync();
+        #endregion
     }
 }
