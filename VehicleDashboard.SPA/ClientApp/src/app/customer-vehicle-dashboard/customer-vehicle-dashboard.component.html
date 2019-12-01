@@ -4,7 +4,7 @@
 <p *ngIf="!_customerVehicles"><em>Loading...</em></p>
 
 <div class="text-center mt-3" *ngIf="_customerVehicles">
-  <h2>Your matches - {{pagination.totalItems}} found</h2>
+  <h2>{{pagination.totalItems}} Records Found</h2>
 </div>
 
 <form class="form-inline" #form="ngForm" (ngSubmit)="loadCustomerVehicles()" novalidate>
