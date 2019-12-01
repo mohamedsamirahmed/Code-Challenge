@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesDashboard.VehicleServices.API", "VehiclesDashboard.VehicleServices.API\VehiclesDashboard.VehicleServices.API.csproj", "{8A7C0225-2316-474B-890D-2097BD7E3649}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{C9E45468-2EBE-416C-85F8-226E0B2B2A27}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6153F6F5-0C1C-4885-A557-4780D60346DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HostingJobs", "HostingJobs", "{3F30E395-B36E-48FF-85CA-65BF6747F238}"
@@ -48,6 +46,16 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesDashboard.VehicleConnection.API", "VehiclesDashboard.VehicleConnection.API\VehiclesDashboard.VehicleConnection.API.csproj", "{C603630B-B5AB-4AC6-8FDB-AE8BC8E8219B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.Core.Common", "VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj", "{DB59F642-0690-466F-B77F-65899A2F9BF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Test", "Unit Test", "{C58B2F1D-5B44-4313-94F3-4401E36FE77D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDashboard.VehicleConnection.API.UnitTest", "VehicleDashboard.VehicleConnection.API.UnitTest\VehicleDashboard.VehicleConnection.API.UnitTest.csproj", "{B3651DCD-98CE-443F-88F1-6FD8426A8341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleConnection.Domain.UnitTest", "VehicleDashboard.VehicleConnection.Domain.UnitTest\VehicleDashboard.VehicleConnection.Domain.UnitTest.csproj", "{C6E16AC2-B322-4944-84FD-A997A2DDFA70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Test", "Unit Test", "{D76EDF83-CC09-4E08-B05D-B247C1D5B25E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleDashboard.VehicleService.Api.Test", "VehicleDashboard.VehicleService.Api.Test\VehicleDashboard.VehicleService.Api.Test.csproj", "{99C70905-9EB5-4043-86F5-110AB184C4FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +123,18 @@ Global
 		{DB59F642-0690-466F-B77F-65899A2F9BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB59F642-0690-466F-B77F-65899A2F9BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB59F642-0690-466F-B77F-65899A2F9BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3651DCD-98CE-443F-88F1-6FD8426A8341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3651DCD-98CE-443F-88F1-6FD8426A8341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3651DCD-98CE-443F-88F1-6FD8426A8341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3651DCD-98CE-443F-88F1-6FD8426A8341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E16AC2-B322-4944-84FD-A997A2DDFA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E16AC2-B322-4944-84FD-A997A2DDFA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E16AC2-B322-4944-84FD-A997A2DDFA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E16AC2-B322-4944-84FD-A997A2DDFA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C70905-9EB5-4043-86F5-110AB184C4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C70905-9EB5-4043-86F5-110AB184C4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C70905-9EB5-4043-86F5-110AB184C4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C70905-9EB5-4043-86F5-110AB184C4FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +158,11 @@ Global
 		{DFC1A83D-74A2-4DAE-B19C-336F5C1B2BB0} = {341568B0-00C1-4186-A64D-F00F510CA262}
 		{C603630B-B5AB-4AC6-8FDB-AE8BC8E8219B} = {341568B0-00C1-4186-A64D-F00F510CA262}
 		{DB59F642-0690-466F-B77F-65899A2F9BF3} = {44DCF1BC-5A7D-4056-B20A-D014C6B9E605}
+		{C58B2F1D-5B44-4313-94F3-4401E36FE77D} = {341568B0-00C1-4186-A64D-F00F510CA262}
+		{B3651DCD-98CE-443F-88F1-6FD8426A8341} = {C58B2F1D-5B44-4313-94F3-4401E36FE77D}
+		{C6E16AC2-B322-4944-84FD-A997A2DDFA70} = {C58B2F1D-5B44-4313-94F3-4401E36FE77D}
+		{D76EDF83-CC09-4E08-B05D-B247C1D5B25E} = {0E3FB98C-B791-47E9-8321-7538B981B0C3}
+		{99C70905-9EB5-4043-86F5-110AB184C4FF} = {D76EDF83-CC09-4E08-B05D-B247C1D5B25E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D26F2F6-1A15-4066-BC25-EE5D1120696E}

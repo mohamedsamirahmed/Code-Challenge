@@ -93,10 +93,9 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
         /// </summary>
         /// <param name="customerVehicleParams">paged list customer vehicles items.</param>
         /// <returns></returns>
-        public async Task<PagedList<CustomerVehiclesDTO>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams)
+        public async Task<ResponseModel<PagedList<CustomerVehiclesDTO>>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams)
         {
-            //ResponseModel<IEnumerable<CustomerVehiclesDTO>> returnResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
-            //IQueryable<CustomerVehiclesDTO> customerVehiclesListDTO = null;
+            ResponseModel<PagedList<CustomerVehiclesDTO>> returnResponse = new ResponseModel<PagedList<CustomerVehiclesDTO>>();
 
             PagedList<CustomerVehiclesDTO> pagedCustomerVehiclesDto = null;
             try
@@ -116,21 +115,18 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
                 var pagedCustomerVehicles = await PagedList<CustomerVehicle>.CreateAsync(customerVehicles, customerVehicleParams.PageNumber, customerVehicleParams.PageSize);
                 pagedCustomerVehiclesDto = Mapping.Mapper.Map<PagedList<CustomerVehicle>, PagedList<CustomerVehiclesDTO>>(pagedCustomerVehicles);
 
-                return pagedCustomerVehiclesDto;
+                returnResponse.Entity = pagedCustomerVehiclesDto;
+                returnResponse.ReturnStatus = true;
+                return returnResponse;
 
             }
             catch (Exception ex)
             {
-                //   returnResponse.ReturnStatus = false;
-                // returnResponse.ReturnMessage.Add(ex.Message);
-
                 _logger.LogError(ex.Message);
+                returnResponse.ReturnStatus = false;
+                returnResponse.ReturnMessage.Add(ex.Message);
+                return returnResponse;
             }
-
-            //  returnResponse.Entity = customerVehiclesListDTO;
-            // return returnResponse;
-
-            return pagedCustomerVehiclesDto;
         }
 
         /// <summary>

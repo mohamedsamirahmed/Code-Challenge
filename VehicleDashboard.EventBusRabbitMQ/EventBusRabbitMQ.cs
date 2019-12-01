@@ -20,6 +20,7 @@ namespace VehicleDashboard.EventBusRabbitMQ
 {
     public class EventBusRabbitMQ : IEventBus, IDisposable
     {
+        //event bus broken name 
         const string BROKER_NAME = "vehicleDashboard_event_bus";
 
         private readonly IRabbitMQPersistentConnection _persistentConnection;
@@ -65,7 +66,10 @@ namespace VehicleDashboard.EventBusRabbitMQ
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="event">event </param>
         public void Publish(IntegrationEvent @event)
         {
             if (!_persistentConnection.IsConnected)
@@ -80,15 +84,19 @@ namespace VehicleDashboard.EventBusRabbitMQ
                     _logger.LogWarning(ex, "Could not publish event: {EventId} after {Timeout}s ({ExceptionMessage})", @event.Id, $"{time.TotalSeconds:n1}", ex.Message);
                 });
 
+            //create rabbitmq channel if not exist
             using (var channel = _persistentConnection.CreateModel())
             {
                 var eventName = @event.GetType()
                     .Name;
 
+                
                 channel.ExchangeDeclare(exchange: BROKER_NAME,
                                     type: "direct");
 
+                
                 var message = JsonConvert.SerializeObject(@event);
+                //message passed by event
                 var body = Encoding.UTF8.GetBytes(message);
 
                 policy.Execute(() =>
@@ -126,6 +134,10 @@ namespace VehicleDashboard.EventBusRabbitMQ
             _subsManager.AddSubscription<T, TH>();
         }
 
+        /// <summary>
+        /// subsribe evnt into 
+        /// </summary>
+        /// <param name="eventName"></param>
         private void DoInternalSubscription(string eventName)
         {
             var containsKey = _subsManager.HasSubscriptionsForEvent(eventName);

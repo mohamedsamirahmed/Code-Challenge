@@ -28,6 +28,9 @@ namespace VehicleDashboard.EventBusRabbitMQ
             _retryCount = retryCount;
         }
 
+        /// <summary>
+        /// check rabbitmq connection status
+        /// </summary>
         public bool IsConnected
         {
             get

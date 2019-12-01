@@ -32,20 +32,17 @@ namespace VehiclesDashboard.VehicleServices.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]CustomerVehicleParams customerVehicleParams)
         {
-            //  ResponseModel<IEnumerable<CustomerVehiclesDTO>> customerVehiclesResponse = new ResponseModel<IEnumerable<CustomerVehiclesDTO>>();
             try
             {
-                //customerVehiclesResponse = _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
                 var customerVehiclesResponse = await _vehiclesDashboardService.GetCustomerVehicleList(customerVehicleParams);
 
-                Response.AddPagination(customerVehiclesResponse.CurrentPage, customerVehiclesResponse.PageSize,
-                    customerVehiclesResponse.TotalCount, customerVehiclesResponse.TotalPages);
+                Response.AddPagination(customerVehiclesResponse.Entity.CurrentPage, customerVehiclesResponse.Entity.PageSize,
+                    customerVehiclesResponse.Entity.TotalCount, customerVehiclesResponse.Entity.TotalPages);
 
-                return Ok(customerVehiclesResponse);
-                //if (customerVehiclesResponse.ReturnStatus)
-                //    return Ok(customerVehiclesResponse);
-                //else
-                //    return BadRequest(customerVehiclesResponse);
+                if (customerVehiclesResponse.ReturnStatus)
+                    return Ok(customerVehiclesResponse);
+                else
+                    return BadRequest(customerVehiclesResponse);
             }
             catch (System.Exception ex)
             {

@@ -13,8 +13,7 @@ namespace VehicleDashboard.VehicleService.Domain.Services
 {
     public interface IVehicleDashboardService : IUnitOfWork
     {
-        //ResponseModel<IEnumerable<CustomerVehiclesDTO>> GetCustomerVehicleList();
-        Task<PagedList<CustomerVehiclesDTO>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams);
+        Task<ResponseModel<PagedList<CustomerVehiclesDTO>>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams);
 
         Task UpdateCustomerVehicleStatus(CustomerVehiclesDTO customerVehiclesDto);
         ResponseModel<IQueryable<LookupDTO>> GetCustomerLookup();

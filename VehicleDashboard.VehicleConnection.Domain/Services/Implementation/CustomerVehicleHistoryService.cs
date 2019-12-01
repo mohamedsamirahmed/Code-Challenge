@@ -59,9 +59,11 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
         {
             try
             {
-                var CustomerVehicleHistoryEntity = customerVehicleHistoryDto.GetEntity();
+                Utility customerVehicleHelper = new Utility();
+                var CustomerVehicleHistoryEntity = customerVehicleHelper.GetCustomerVehicleHistoryEntity(customerVehicleHistoryDto);
+                
                 customerVehicleHistoryRepo.Add(CustomerVehicleHistoryEntity);
-                await customerVehicleHistoryRepo.SaveChangesAsync();
+              int res=  await customerVehicleHistoryRepo.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -70,33 +72,29 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
             }
         }
 
-        public async  Task<PagedList<CustomerVehicleHistoryDTO>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo, CustomerVehicleHistoryParams customerVehicleHistoryParams)
+        //public async  Task<PagedList<CustomerVehicleHistoryDTO>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo, CustomerVehicleHistoryParams customerVehicleHistoryParams)
+        public async Task<ResponseModel<PagedList<CustomerVehicleHistoryDTO>>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo, CustomerVehicleHistoryParams customerVehicleHistoryParams)
         {
-            //ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>> returnResponse = new ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>>();
-            //List<CustomerVehicleHistoryDTO> customerVehicleHistoryListDTO = new List<CustomerVehicleHistoryDTO>();
+            ResponseModel<PagedList<CustomerVehicleHistoryDTO>> returnResponse = new ResponseModel<PagedList<CustomerVehicleHistoryDTO>>();
             PagedList<CustomerVehicleHistoryDTO> pagedCustomerVehicleHistoryDto = null;
-
             try
             {
-                // IQueryable<CustomerVehicleHistory> customerVehicleHistory = customerVehiclesHistoryRepo.GetGustomerVehicleHistory(customerId, vehicleId, regNo);
                 IQueryable<CustomerVehicleHistory> customerVehicleHistory = customerVehicleHistoryRepo.GetGustomerVehicleHistory(customerId, vehicleId, regNo);
                 var pagedCustomerVehicleHistory = await PagedList<CustomerVehicleHistory>.CreateAsync(customerVehicleHistory, customerVehicleHistoryParams.PageNumber, customerVehicleHistoryParams.PageSize);
                 pagedCustomerVehicleHistoryDto = Mapping.Mapper.Map<PagedList<CustomerVehicleHistory>, PagedList<CustomerVehicleHistoryDTO>>(pagedCustomerVehicleHistory);
-
-                return pagedCustomerVehicleHistoryDto;
-
-                //returnResponse.Entity = customerVehicleHistoryListDTO;
-                //returnResponse.TotalRows = customerVehicleHistoryListDTO.Count;
+                returnResponse.Entity = pagedCustomerVehicleHistoryDto;
+                returnResponse.ReturnStatus = true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-               // returnResponse.ReturnStatus = false;
-               // returnResponse.ReturnMessage.Add(ex.Message);
+                returnResponse.ReturnStatus = false;
+                returnResponse.ReturnMessage.Add(ex.Message);
             }
-            return pagedCustomerVehicleHistoryDto;
+            return returnResponse;
         }
 
         #endregion
+
     }
 }

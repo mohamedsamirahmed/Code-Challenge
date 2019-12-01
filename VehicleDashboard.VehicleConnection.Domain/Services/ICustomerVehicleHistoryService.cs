@@ -13,7 +13,6 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services
     public interface ICustomerVehicleHistoryService : IUnitOfWork
     {
         Task AddCustomerVehicleHistory(CustomerVehicleHistoryDTO customerVehicleHistoryDto);
-        //ResponseModel<IEnumerable<CustomerVehicleHistoryDTO>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo); 
-        Task<PagedList<CustomerVehicleHistoryDTO>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo, CustomerVehicleHistoryParams customerVehicleHistoryParams);
+        Task<ResponseModel<PagedList<CustomerVehicleHistoryDTO>>> GetCustomerVehicleHistory(string vehicleId, int customerId, string regNo, CustomerVehicleHistoryParams customerVehicleHistoryParams);
     }
 }

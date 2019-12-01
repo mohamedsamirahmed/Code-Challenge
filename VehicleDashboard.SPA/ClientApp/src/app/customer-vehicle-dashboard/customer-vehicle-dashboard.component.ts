@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Lookup } from '../models/lookup';
 import { CustomerVehicleDashboardService } from '../services/customer-vehicle-dashboard.service';
+import { AlertifyService } from '../Shared/alertify.service';
 
 @Component({
   selector: 'app-customer-vehicle-dashboard',
@@ -22,7 +23,8 @@ export class CustomerVehicleDashboardComponent implements OnInit {
   customerServiceEndpoint = this.vehicleServiceBaseUrl + 'CustomerVehicles/GetCustomers';
   vehicleServiceEndpoint = this.vehicleServiceBaseUrl + 'CustomerVehicles/GetVehicles';
 
-  constructor(private customerVehicleService: CustomerVehicleDashboardService, private route: ActivatedRoute) { }
+  constructor(private customerVehicleService: CustomerVehicleDashboardService, private route: ActivatedRoute,
+    private alertify: AlertifyService) { }
 
   ngOnInit(): void {
 
@@ -63,15 +65,15 @@ export class CustomerVehicleDashboardComponent implements OnInit {
 
     //Get All Customer Vehicles from service
     this.customerVehicleService.getcustomerVehiclesList(pageNumber, itemsPerPage, this.customerVehicleParams).subscribe((response: any) => {
-      this._customerVehicles = response.result;
-      this.pagination = response.pagination
-      //if (response.returnStatus)
-      //  this._cutomerVehicles = response.entity;
-      //else
-      //  console.log(response.returnMessage);
+      if (response.result.returnStatus) {
+        this._customerVehicles = response.result.entity;
+        this.pagination = response.pagination
+      }
+      else
+        this.alertify.error(response.result.returnMessage);
 
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 
@@ -82,10 +84,10 @@ export class CustomerVehicleDashboardComponent implements OnInit {
       if (response.returnStatus)
         this._customers = response.entity;
       else
-        console.log(response.returnMessage);
+        this.alertify.error(response.returnMessage);
 
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 

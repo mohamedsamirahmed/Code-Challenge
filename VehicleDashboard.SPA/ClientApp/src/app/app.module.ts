@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core'; 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 import { AppComponent } from './app.component'; 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
@@ -13,7 +13,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomerVehicleDashboardComponent } from './customer-vehicle-dashboard/customer-vehicle-dashboard.component';
 import { CustomerVehicleDetailComponent } from './customer-vehicle-details/customer-vehicle-details.component';
 import { CustomerVehicleDashboardService } from './services/customer-vehicle-dashboard.service';
- 
+import { AlertifyService } from './Shared/alertify.service';
+  
        
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { CustomerVehicleDashboardService } from './services/customer-vehicle-das
     FetchDataComponent,
     CustomerVehicleDashboardComponent,
     CustomerVehicleDetailComponent
-  ],
+  ], 
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -40,7 +41,7 @@ import { CustomerVehicleDashboardService } from './services/customer-vehicle-das
       { path: '**', redirectTo: '', pathMatch: 'full' }
     ])
   ],
-  providers: [CustomerVehicleDashboardService],
+  providers: [CustomerVehicleDashboardService, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

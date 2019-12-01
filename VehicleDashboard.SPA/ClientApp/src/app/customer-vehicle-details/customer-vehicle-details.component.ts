@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Pagination } from '../models/Pagination';
 import { CustomerVehicleDashboardService } from '../services/customer-vehicle-dashboard.service';
 import { faFilm } from '@fortawesome/free-solid-svg-icons';
+import { AlertifyService } from '../Shared/alertify.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class CustomerVehicleDetailComponent implements OnInit {
   pagination: Pagination
 
   constructor(private customerVehicleService: CustomerVehicleDashboardService,
-    private route: ActivatedRoute, private router: Router) { }
+    private route: ActivatedRoute, private router: Router, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.Startup();
@@ -53,16 +54,15 @@ export class CustomerVehicleDetailComponent implements OnInit {
     }
 
     this.customerVehicleService.getcustomerVehicleDetails(customerId, vehicleId, regNo,pageNumber, itemsPerPage).subscribe((response: any) => {
-      this._cutomerVehicleHistoryList = response.result;
-      this.pagination = response.pagination
-
-      //if (response.returnStatus)
-      //  this._cutomerVehicleHistoryList = response.entity;
-      //else
-      //  console.log(response.returnMessage);
+      if (response.result.returnStatus) {
+        this._cutomerVehicleHistoryList = response.result.entity;
+        this.pagination = response.pagination
+      }
+      else
+        this.alertify.error(response.result.returnMessage);
 
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 }

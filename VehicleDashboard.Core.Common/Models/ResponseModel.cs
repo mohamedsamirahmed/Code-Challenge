@@ -9,9 +9,6 @@ namespace VehicleDashboard.Core.Common.Models
         public bool ReturnStatus { get; set; }
         public List<String> ReturnMessage { get; set; }
         public Hashtable Errors;
-        public int TotalPages;
-        public int TotalRows;
-        public int PageSize;
         public T Entity;
 
         public ResponseModel()
@@ -19,9 +16,6 @@ namespace VehicleDashboard.Core.Common.Models
             ReturnMessage = new List<String>();
             ReturnStatus = true;
             Errors = new Hashtable();
-            TotalPages = 0;
-            TotalPages = 0;
-            PageSize = 0;
         }
     }
 }

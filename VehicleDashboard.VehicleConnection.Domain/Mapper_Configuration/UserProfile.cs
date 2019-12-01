@@ -21,6 +21,14 @@ namespace VehicleDashboard.VehicleConnection.Domain.Mapper_Configuration
 
             CreateMap<PagedList<CustomerVehicleHistory>, PagedList<CustomerVehicleHistoryDTO>>()
                .ConvertUsing<PagedListConverter<CustomerVehicleHistory, CustomerVehicleHistoryDTO>>();
+
+            CreateMap<CustomerVehicleHistoryDTO,CustomerVehicleHistory>()
+                 .ForMember(dest =>
+                dest.VehicleId,
+                opt => opt.MapFrom(src => src.VIN))
+                .ForMember(dest =>
+                dest.StatusModificationTime,
+                opt => opt.MapFrom(src => src.ModificationStatus));
         }
     }
 }

@@ -20,6 +20,11 @@ namespace VehicleDashboard.Simulator.HostScheduler.IntegrationEvents
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
         }
 
+        /// <summary>
+        /// publish specific event into event bus.
+        /// </summary>
+        /// <param name="evt">event required to publish</param>
+        /// <returns></returns>
         public async Task PublishThroughEventBusAsync(IntegrationEvent evt)
         {
             try

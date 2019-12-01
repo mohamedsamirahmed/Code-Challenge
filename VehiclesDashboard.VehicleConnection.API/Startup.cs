@@ -90,6 +90,10 @@ namespace VehiclesDashboard.VehicleConnection.API
             return new AutofacServiceProvider(container.Build());
         }
 
+        /// <summary>
+        /// register new connection into rabbitmq.
+        /// </summary>
+        /// <param name="services"></param>
         private void RegisterEventBus(IServiceCollection services)
         {
             var subscriptionClientName = _configuration.GetValue<string>("EventBusSettings:SubscriptionClientName");
@@ -113,7 +117,11 @@ namespace VehiclesDashboard.VehicleConnection.API
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddSingleton<CustomerVehicleChangedIntegrationEventHandler>();
         }
-
+       
+        /// <summary>
+        /// subscribe vehicle changed event into event bus.
+        /// </summary>
+        /// <param name="app"></param>
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();

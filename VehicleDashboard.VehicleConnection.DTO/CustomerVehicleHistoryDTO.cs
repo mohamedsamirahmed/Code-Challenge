@@ -52,18 +52,18 @@ namespace VehicleDashboard.VehicleConnection.DTO
         //    return customerDtoLst.ToList();
         //}
 
-        public CustomerVehicleHistory GetEntity()
-        {
-            return new CustomerVehicleHistory()
-            {
-                ConnectionStatus = this.ConnectionStatus,
-                CustomerId = this.CustomerId,
-                RegNo = this.RegNo,
-                StatusModificationTime = this.ModificationStatus,
-                VehicleId = this.VIN,
-                CustomerName = this.CustomerName
-            };
-        }
+        //public CustomerVehicleHistory GetEntity()
+        //{
+        //    return new CustomerVehicleHistory()
+        //    {
+        //        ConnectionStatus = this.ConnectionStatus,
+        //        CustomerId = this.CustomerId,
+        //        RegNo = this.RegNo,
+        //        StatusModificationTime = this.ModificationStatus,
+        //        VehicleId = this.VIN,
+        //        CustomerName = this.CustomerName
+        //    };
+        //}
 
     }
 }
