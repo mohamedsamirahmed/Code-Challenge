@@ -11,7 +11,6 @@ namespace VehicleDashboard.VehicleService.Data
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        // public  DbSet<CustomerVehicles> CustomerVehicles { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

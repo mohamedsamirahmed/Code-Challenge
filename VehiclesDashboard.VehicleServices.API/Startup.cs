@@ -84,7 +84,6 @@ namespace VehiclesDashboard.VehicleServices.API
 
         private IServiceProvider ConfigureAutofac(IServiceCollection services)
         {
-            // services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             var container = new ContainerBuilder();
             container.Populate(services);
 
@@ -143,12 +142,6 @@ namespace VehiclesDashboard.VehicleServices.API
 
             //configure customer vehicle status on change
             ConfigureEventBus(app);
-
-            //adding signalR hub context
-            //app.UseSignalR(routes =>
-            //{
-            //    routes.MapHub<VehicleMonitoringHub>("");
-            //});
 
             app.UseMvc();
         }
