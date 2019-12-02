@@ -98,7 +98,9 @@ interfaces.
 - **Data Model** project :  which is responsible for creating all entity DB models.
 - **Data** project :  which is responsible for creating DB entity framework context references **Data Model** project.
 - **Domain** project : responsible for creating entity repositories and mapping **Data Models** to **DTO Models** and implementing services which consumed by **API** Layer.
+- 
 ![VehicleDashboardService.cs](https://lh3.googleusercontent.com/zTFWEonCaHm82DAGiiuqaQcdpQKBc6vXDwqcAfAkICGQh41LeYUy9bnKTy1xmEtTz25hxQ4cao6u)
+
 --**VehicleDashboardService** class : Unit of work implementation for all repositories to achieve CRUD operation (Get Customer Vehicles , Get Customers Lookup , Get Vehicles Lookup and Update Customer Vehicle with latest connection status ).
 3-**API Layer**: contains API project  responsible for creating APIs used by **Presentation** Layer and execute all business operations on beside to subscribe & handle events.
 
