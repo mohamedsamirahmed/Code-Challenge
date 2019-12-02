@@ -27,7 +27,7 @@ namespace VehicleDashboard.EventBusRabbitMQ.Events
             this.CustomerId = CustomerId;
             this.ModificationStatus = ModificationStatus;
             this.ConnectionStatus = ConnectionStatus;
-            this.CustomerName = CustomerName;
+            this.CustomerName = customerName;
         }
     }
 }

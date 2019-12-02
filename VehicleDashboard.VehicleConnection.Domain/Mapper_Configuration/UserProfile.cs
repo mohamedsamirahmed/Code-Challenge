@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using VehicleDashboard.Core.Common.Helper;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleConnection.Domain.Helpers;
 using VehicleDashboard.VehicleConnection.Domain.Model;
 using VehicleDashboard.VehicleConnection.DTO;
@@ -29,6 +30,15 @@ namespace VehicleDashboard.VehicleConnection.Domain.Mapper_Configuration
                 .ForMember(dest =>
                 dest.StatusModificationTime,
                 opt => opt.MapFrom(src => src.ModificationStatus));
+
+            CreateMap<CustomerVehicleChangedIntegrationEvent, CustomerVehicleHistory>()
+                 .ForMember(dest =>
+                dest.VehicleId,
+                opt => opt.MapFrom(src => src.VIN))
+                .ForMember(dest =>
+                dest.StatusModificationTime,
+                opt => opt.MapFrom(src => src.ModificationStatus));
+                
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VehicleDashboard.Core.Common.Helper;
 using VehicleDashboard.Core.Common.Models;
 using VehicleDashboard.Core.Common.UnitOfWork;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleService.Domain.Helpers;
 using VehicleDashboard.VehicleService.DTO;
 
@@ -15,7 +16,7 @@ namespace VehicleDashboard.VehicleService.Domain.Services
     {
         Task<ResponseModel<PagedList<CustomerVehiclesDTO>>> GetCustomerVehicleList(CustomerVehicleParams customerVehicleParams);
 
-        Task UpdateCustomerVehicleStatus(CustomerVehiclesDTO customerVehiclesDto);
+        Task UpdateCustomerVehicleStatus(CustomerVehicleChangedIntegrationEvent customerVehiclesDto);
         ResponseModel<IQueryable<LookupDTO>> GetCustomerLookup();
         ResponseModel<IQueryable<LookupDTO>> GetVehicleLookup(); 
 

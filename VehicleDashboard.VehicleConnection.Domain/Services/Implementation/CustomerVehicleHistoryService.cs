@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VehicleDashboard.Core.Common.Helper;
 using VehicleDashboard.Core.Common.Models;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleConnection.Data;
 using VehicleDashboard.VehicleConnection.Domain.Helpers;
 using VehicleDashboard.VehicleConnection.Domain.Mapper_Configuration;
@@ -55,12 +56,19 @@ namespace VehicleDashboard.VehicleConnection.Domain.Services.Implementation
 
 
         #region public Operations
-        public async  Task AddCustomerVehicleHistory(CustomerVehicleHistoryDTO customerVehicleHistoryDto)
+        /// <summary>
+        /// Add RabbitMq event message into customer vehicle history table
+        /// </summary>
+        /// <param name="customerVehicleHistoryDto"></param>
+        /// <returns></returns>
+        //public async Task AddCustomerVehicleHistory(CustomerVehicleHistoryDTO customerVehicleHistoryDto)
+        public async  Task AddCustomerVehicleHistory(CustomerVehicleChangedIntegrationEvent customerVehicleHistoryEventMessage)
         {
             try
             {
                 Utility customerVehicleHelper = new Utility();
-                var CustomerVehicleHistoryEntity = customerVehicleHelper.GetCustomerVehicleHistoryEntity(customerVehicleHistoryDto);
+
+                var CustomerVehicleHistoryEntity = customerVehicleHelper.GetCustomerVehicleHistoryEntity(customerVehicleHistoryEventMessage);
                 
                 customerVehicleHistoryRepo.Add(CustomerVehicleHistoryEntity);
               int res=  await customerVehicleHistoryRepo.SaveChangesAsync();

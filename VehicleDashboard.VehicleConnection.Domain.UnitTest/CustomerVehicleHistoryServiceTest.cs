@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 using VehicleDashboard.VehicleConnection.Domain.Helpers;
 using VehicleDashboard.VehicleConnection.Domain.Model;
 using VehicleDashboard.VehicleConnection.Domain.Repositories;
@@ -32,16 +33,15 @@ namespace VehicleDashboard.VehicleConnection.Domain.UnitTest
         public async void  Add_ReturnsSaveSuccessResult_WhenCustomerVehiclelIsValid()
         {
             // Arrange
-            var customerVehicleHistoryDTOToAdd = new CustomerVehicleHistoryDTO() { VIN = _customerVehicleHistoryDto[0].VIN , ConnectionStatus = false,
-                    ModificationStatus = DateTime.Now,CustomerName= _customerVehicleHistoryDto[0].CustomerName,CustomerId=_customerVehicleHistoryDto[0].CustomerId,RegNo= _customerVehicleHistoryDto[0].RegNo
-            };
-            
+            var customerVehicleHistoryEventMessageToAdd = new CustomerVehicleChangedIntegrationEvent(_customerVehicleHistoryDto[0].VIN,
+                _customerVehicleHistoryDto[0].RegNo, _customerVehicleHistoryDto[0].CustomerId, false, DateTime.Now, _customerVehicleHistoryDto[0].CustomerName);
+
             _customerVehicleHistoryRepoMock.Setup(rep => rep.SaveChangesAsync()).Returns(() => Task<int>.Run(() => { return 1; }));
 
             //Act
             try
             {
-                await _customerVehicleHistoryServiceMock.AddCustomerVehicleHistory(customerVehicleHistoryDTOToAdd);
+                await _customerVehicleHistoryServiceMock.AddCustomerVehicleHistory(customerVehicleHistoryEventMessageToAdd);
             }
             catch (Exception ex)
             {

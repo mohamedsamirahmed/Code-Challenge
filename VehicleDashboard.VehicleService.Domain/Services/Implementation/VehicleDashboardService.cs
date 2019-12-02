@@ -13,6 +13,7 @@ using VehicleDashboard.VehicleService.Domain.Helpers;
 using AutoMapper;
 using VehicleDashboard.Core.Common.Helper;
 using VehicleDashboard.VehicleService.Domain.Mapper_Configuration;
+using VehicleDashboard.EventBusRabbitMQ.Events;
 
 namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 {
@@ -174,12 +175,32 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
 
             return returnResponse;
         }
-        public async Task UpdateCustomerVehicleStatus(CustomerVehiclesDTO customerVehiclesDto)
+        /// <summary>
+        /// update customer vehicle with the lastest connection status
+        /// </summary>
+        /// <param name="customerVehiclesEventMessage">current vehicle message</param>
+        /// <returns></returns>
+        public async Task UpdateCustomerVehicleStatus(CustomerVehicleChangedIntegrationEvent customerVehiclesEventMessage)
         {
             try
             {
-                var CustomerVehicleEntity = customerVehiclesDto.GetEntity();
-                customerVehiclesRepo.Update(CustomerVehicleEntity);
+                //get customer vehicle row
+                var customerVehicleEntity = customerVehiclesRepo.GetAll()
+                    .Where(c => c.VehicleId == customerVehiclesEventMessage.VIN && c.CustomerId == customerVehiclesEventMessage.CustomerId
+                    && c.RegNo == customerVehiclesEventMessage.RegNo).FirstOrDefault();
+
+                if (customerVehicleEntity == null)
+                {
+                    _logger.LogError($"Invalid customer vehicle with customerID: {customerVehiclesEventMessage.CustomerId} " +
+                        $"- vehicleId: {customerVehiclesEventMessage.VIN} - registeration#:  {customerVehiclesEventMessage.RegNo} ");
+                    throw new Exception("Invalid Message");
+                }
+
+                //update required customer vehicle (connection status & last modification date)
+                customerVehicleEntity.IsConnectedStatus = customerVehiclesEventMessage.ConnectionStatus;
+                customerVehicleEntity.LastStatusModificationTime = customerVehiclesEventMessage.ModificationStatus;
+
+                customerVehiclesRepo.Update(customerVehicleEntity);
                 await customerVehiclesRepo.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -190,8 +211,8 @@ namespace VehicleDashboard.VehicleService.Domain.Services.Implementation
         }
 
 
-        #endregion
 
+        #endregion
     }
 
 }

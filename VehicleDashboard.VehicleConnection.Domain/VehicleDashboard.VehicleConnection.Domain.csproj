@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VehicleDashboard.Core.Common\VehicleDashboard.Core.Common.csproj" />
+    <ProjectReference Include="..\VehicleDashboard.EventBusRabbitMQ\VehicleDashboard.EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Data\VehicleDashboard.VehicleConnection.Data.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.Domain.Model\VehicleDashboard.VehicleConnection.Domain.Model.csproj" />
     <ProjectReference Include="..\VehicleDashboard.VehicleConnection.DTO\VehicleDashboard.VehicleConnection.DTO.csproj" />

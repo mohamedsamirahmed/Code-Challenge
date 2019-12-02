@@ -40,28 +40,5 @@ namespace VehicleDashboard.VehicleService.DTO
 
         public CustomersDTO Customer { get; set; }
 
-        //public static List<CustomerVehiclesDTO> MapFields(IQueryable<CustomerVehicle> customerVehicleList)
-        //{
-        //    List<CustomerVehiclesDTO> customerDtoLst = new List<CustomerVehiclesDTO>();
-            
-        //    foreach (var customerVehicle in customerVehicleList)
-        //    {
-        //        customerDtoLst.Add(new CustomerVehiclesDTO(customerVehicle));
-        //    }
-        //    return customerDtoLst.ToList();
-        //}
-
-        public CustomerVehicle GetEntity()
-        {
-            return new CustomerVehicle()
-            {
-                IsConnectedStatus = this.IsConnectedStatus,
-                CustomerId = this.customerId,
-                RegNo = this.RegNo,
-                LastStatusModificationTime = this.LastModificationStatus,
-                VehicleId = this.VIN
-            };
-        }
-
     }
 }

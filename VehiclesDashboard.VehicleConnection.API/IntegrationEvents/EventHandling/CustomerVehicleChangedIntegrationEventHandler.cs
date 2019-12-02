@@ -27,20 +27,11 @@ namespace VehiclesDashboard.VehicleConnection.API.IntegrationEvents.EventHandlin
         /// </summary>
         /// <param name="customerVehicleEvent">customer event history item DTO</param>
         /// <returns></returns>
-        public async Task Handle(CustomerVehicleChangedIntegrationEvent customerVehicleEvent)
+        public async Task Handle(CustomerVehicleChangedIntegrationEvent customerVehicleEventMessage)
         {
             try
             {
-                CustomerVehicleHistoryDTO customerVehicleDto = new CustomerVehicleHistoryDTO()
-                {
-                    ConnectionStatus = customerVehicleEvent.ConnectionStatus,
-                    CustomerId = customerVehicleEvent.CustomerId,
-                    ModificationStatus = customerVehicleEvent.ModificationStatus,
-                    RegNo = customerVehicleEvent.RegNo,
-                    VIN = customerVehicleEvent.VIN
-                };
-
-                await _customerVehicleHistoryService.AddCustomerVehicleHistory(customerVehicleDto);
+                await _customerVehicleHistoryService.AddCustomerVehicleHistory(customerVehicleEventMessage);
             }
             catch (Exception ex)
             {

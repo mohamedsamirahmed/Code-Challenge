@@ -35,7 +35,7 @@ namespace VehicleDashboard.Simulator.HostScheduler.Jobs
             List<CustomerVehicleChangedIntegrationEvent> customerVehiclesLst = helper.GenerateRandomStatus();
             foreach (var customerVehicleChangedEvent in customerVehiclesLst)
             {
-                // Publish through the Event Bus
+                // Publish message through the Event Bus
                 _customerVehicleHistoryIntegrationEventService.PublishThroughEventBusAsync(customerVehicleChangedEvent);
             }
 
