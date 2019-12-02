@@ -183,19 +183,24 @@ The above picture shows customer vehicle home page (Dashboard)
 
 The above picture shows customer vehicle connection history .
 ### Rabbit MQ management UI screenshots
- - Customer Vehicle Exchange 
+
+**Customer Vehicle Exchange**
+
  ![Exchange Event Bus](https://lh3.googleusercontent.com/rnJaUJXOPKVaWpKlF-kAs0cO2LDTXSzV45eY-o8IogbqN8g1No4qdZtUpxktiKJXy974Widt05Fh)
  
- - Customer Vehicle Bindings
+**Customer Vehicle Bindings**
+
  ![Vehicle Connections](https://lh3.googleusercontent.com/bKXoIuO2jUfRCSOhWBuwVjfoEusIUgMBepf0Sx8VfyhEVMKF00o2s9KwOhat8W1iRXBT_Iqb-Rfi)
 
- - Customer Vehicle Queues
+**Customer Vehicle Queues**
+
  ![Customer Vehicle Queues](https://lh3.googleusercontent.com/PZEz0pfVgZWwbNwnMhdrEJo5mfid3vpHHRdO6LFugqReil0A6MZXN7R8TgiOozZhqGJFksseJwwk)
 
-- Customer Vehicle Consumer Channel
+**Customer Vehicle Consumer Channel**
+
  ![Consummer Channel](https://lh3.googleusercontent.com/fqX-AsJDt0wZpnoN8x0N3XszIipAkEqE-if-8OTfxaomQ1OOnAOPONRvGuvJc8G6dtijTfRsqFmh)
 
-- Customer Vehicle Queue Message 
+**Customer Vehicle Queue Message**
 
 ![Message](https://lh3.googleusercontent.com/g2h8yUthwfXVYD0ZmSYawkCN8eRQ-iy6n9s-7zW6WPVnIg0pcGULReS2dPCCKK19cH89D-yUZsX9)
 
